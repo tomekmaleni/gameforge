@@ -2,12 +2,9 @@ services:
   - type: web
     name: gameforge
     runtime: node
-    buildCommand: npm install && npm run build
+    nodeVersion: "18.18.0"
+    buildCommand: npm install --build-from-source && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-    disk:
-      name: gameforge-data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
