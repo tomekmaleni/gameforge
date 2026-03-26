@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 // ---------- paths ----------
 const __filename = fileURLToPath(import.meta.url);
@@ -463,6 +464,51 @@ app.post('/api/seed', async (req, res) => {
   }
 });
 
+// ---------- export full database as JSON ----------
+app.get('/api/export', (req, res) => {
+  try {
+    const rows = db.prepare('SELECT * FROM entities').all();
+    const data = {};
+    for (const row of rows) {
+      if (!data[row.entity_type]) data[row.entity_type] = [];
+      data[row.entity_type].push(JSON.parse(row.data));
+    }
+    const users = db.prepare('SELECT * FROM users').all();
+    data._users = users;
+    res.setHeader('Content-Disposition', 'attachment; filename="gameforge-backup.json"');
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ---------- import from backup JSON ----------
+app.post('/api/import', (req, res) => {
+  try {
+    const data = req.body;
+    if (!data || typeof data !== 'object') return res.status(400).json({ error: 'Invalid data' });
+    const insert = db.prepare('INSERT OR REPLACE INTO entities (id, entity_type, data, created_date, updated_date) VALUES (?, ?, ?, ?, ?)');
+    const tx = db.transaction(() => {
+      for (const [entityType, entities] of Object.entries(data)) {
+        if (entityType === '_users') continue;
+        if (!Array.isArray(entities)) continue;
+        for (const entity of entities) {
+          const now = new Date().toISOString();
+          insert.run(entity.id, entityType, JSON.stringify(entity), entity.created_date || now, entity.updated_date || now);
+        }
+      }
+      if (data._users) {
+        const upsert = db.prepare('INSERT OR REPLACE INTO users (email, full_name, created_date) VALUES (?, ?, ?)');
+        for (const u of data._users) upsert.run(u.email, u.full_name, u.created_date);
+      }
+    });
+    tx();
+    res.json({ message: 'Import complete' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ---------- serve frontend in production ----------
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 if (fs.existsSync(DIST_DIR)) {
@@ -472,6 +518,48 @@ if (fs.existsSync(DIST_DIR)) {
       res.sendFile(path.join(DIST_DIR, 'index.html'));
     }
   });
+}
+
+// ---------- auto-seed on startup if DB is empty ----------
+// Auto-restore from backup.json on startup if DB is empty
+{
+  const count = db.prepare('SELECT COUNT(*) as c FROM entities').get();
+  if (count.c === 0) {
+    const backupPath = path.join(__dirname, 'backup.json');
+    if (fs.existsSync(backupPath)) {
+      console.log('Database is empty, restoring from backup.json...');
+      try {
+        const data = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+        const insert = db.prepare('INSERT OR REPLACE INTO entities (id, entity_type, data, created_date, updated_date) VALUES (?, ?, ?, ?, ?)');
+        const tx = db.transaction(() => {
+          for (const [entityType, entities] of Object.entries(data)) {
+            if (entityType === '_users') continue;
+            if (!Array.isArray(entities)) continue;
+            for (const entity of entities) {
+              const now = new Date().toISOString();
+              insert.run(entity.id, entityType, JSON.stringify(entity), entity.created_date || now, entity.updated_date || now);
+            }
+          }
+          if (data._users) {
+            const upsert = db.prepare('INSERT OR REPLACE INTO users (email, full_name, created_date) VALUES (?, ?, ?)');
+            for (const u of data._users) upsert.run(u.email, u.full_name, u.created_date);
+          }
+        });
+        tx();
+        console.log('Restore from backup.json complete!');
+      } catch (err) {
+        console.error('Restore failed:', err.message);
+      }
+    } else {
+      console.log('Database is empty, running seed script...');
+      try {
+        execSync('node server/seed.js', { cwd: ROOT_DIR, stdio: 'inherit' });
+        console.log('Seed complete!');
+      } catch (err) {
+        console.error('Seed failed:', err.message);
+      }
+    }
+  }
 }
 
 // ---------- start ----------

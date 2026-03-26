@@ -1,0 +1,1098 @@
+{
+  "Project": [
+    {
+      "name": "Ruševine",
+      "description": "Možda",
+      "invite_code": "BX0VBM",
+      "owner_email": "tomekmaleni@gmail.com",
+      "id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1"
+    }
+  ],
+  "ProjectMember": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "user_email": "tomekmaleni@gmail.com",
+      "user_name": "Tomislav Matoković",
+      "role": "admin",
+      "id": "43ee6d1d-16f2-4ec5-a28d-7e2b68f20563"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "user_email": "shadowmaster1705@gmail.com",
+      "user_name": "Ying Yang",
+      "role": "editor",
+      "id": "dcf24aff-bedf-4e56-b54b-8348b7b1562d"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "user_email": "matko.vasovic@gmail.com",
+      "user_name": "Matkoosymous W",
+      "role": "editor",
+      "id": "a170a732-7110-4377-8a25-15425e9c6ec3"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "user_email": "jakov.vehar@gmail.com",
+      "user_name": "Jakov Vehar Kocačić Augustin",
+      "role": "editor",
+      "id": "5cbaf646-c67c-4bdb-9223-de4eea23d00c"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "user_email": "womir0706@gmail.com",
+      "user_name": "Vladislav Groza",
+      "role": "editor",
+      "id": "a60b60d9-1ca0-409d-9435-acaa5e4efe32"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "user_email": "f.tomic1801@gmail.com",
+      "user_name": "Filip Tomić",
+      "role": "admin",
+      "id": "ba6129fe-7979-4426-b3f8-234ae9b8bb8b"
+    }
+  ],
+  "Folder": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Frakcije",
+      "order": 0,
+      "id": "025bea8c-19fd-45cd-bf1f-c6e3e73fec68"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Artefakti",
+      "order": 1,
+      "id": "50029cc7-c90d-4ecd-bbff-2d7240c8c1c6"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Map",
+      "order": 2,
+      "id": "c2eb7f0a-05ce-4aae-9795-25f96b622b7e"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Mechanics",
+      "order": 3,
+      "id": "363e183f-1d8f-4687-b3b0-c9e011434ff6"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Lore",
+      "order": 4,
+      "id": "f613b464-b283-4ff5-a305-2de3e331523f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Dizajn",
+      "order": 5,
+      "id": "4685688d-03b2-4b18-9c93-eb24c85475d5"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Čudovišta",
+      "order": 6,
+      "id": "9159bb06-c48f-4fca-8771-844c5a368172"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Playtesting",
+      "order": 7,
+      "id": "22d8aa62-dde0-4528-a6d8-e312e5dad3f9"
+    }
+  ],
+  "GameCategory": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Polja",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "03185944-206b-47d8-895f-a90bf09814ca"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Zapovjednici",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "6628cf0e-a6ac-4324-ace3-bae08d482ef0"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Event",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "361d2631-ce35-4b9d-bd64-5da1abf1c41f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Trofeji",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "3033c6e7-0be0-488f-a27a-1712698d3279"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Čudovišta",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "b4a5e588-31e1-4893-991a-9fd3e7cf217b"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Relikvije",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "f3cf2cfc-0017-45ba-ac36-7938cdea1d4e"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Artefakti",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "50ea6893-06b9-4cdf-a229-4c51b30948f4"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Frakcije",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "b9827f53-e4b3-448e-be45-c9a40c45c93b"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Blago",
+      "fields": [
+        {
+          "name": "Type",
+          "type": "text"
+        },
+        {
+          "name": "Ability",
+          "type": "textarea"
+        },
+        {
+          "name": "Lore",
+          "type": "textarea"
+        }
+      ],
+      "id": "dd22a3ca-2ed0-42be-9ecc-57b49543ea35"
+    }
+  ],
+  "Mechanic": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Block action",
+      "id": "d00c81f3-04fc-4a28-9244-a684e514b08d"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Force action",
+      "id": "25cc3098-0fdb-47fd-a651-68cccb2e0fd1"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Štit",
+      "id": "00d12df3-67a7-4a7f-a034-0896e534ea70"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Uništavanje artefakata",
+      "id": "5309000c-7a57-4f79-98de-34dfc35776c1"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Regrutiranje",
+      "id": "5cb84b33-a1d9-48a4-9725-ea9f56e8908a"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Borba s Demonima",
+      "id": "49b40778-30f3-4367-b379-2f3f083a6fd0"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Otkrivanje Polja",
+      "id": "8fc84fea-c157-4917-94d6-4c71e15fd5ff"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Pročišćenje",
+      "id": "87ce01d9-a556-4785-b4a1-50e88294bde1"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Traženje Relikvija",
+      "id": "03c3ad95-91c2-4a8d-aaa4-c57a617fc808"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Predviđanje",
+      "id": "9b8c78db-8374-40b1-b989-3fa3e398b929"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Combat",
+      "id": "e141cdc3-3642-4cda-b6c9-dd6fae903c9f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Healing",
+      "id": "4086e696-c0ee-4565-8a17-6e69068d20f4"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Movement",
+      "id": "03a90e65-f871-46d0-886f-191f8e8d2dcd"
+    }
+  ],
+  "GameEntry": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Blagoslovljeni Štit Prvog Svitanja",
+      "data": {
+        "Type": "Početni - Odred minulog sunca"
+      },
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
+        "00d12df3-67a7-4a7f-a034-0896e534ea70"
+      ],
+      "tags": [
+        "artefakti",
+        "odred minulog sunca"
+      ],
+      "id": "bcdfc95d-08a5-4f67-9940-1064b31a6442"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Sunčev Disk",
+      "data": {
+        "Type": "Otkrivanje Polja"
+      },
+      "mechanic_ids": [],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "d28b3485-017e-4e78-9b91-0e5ab48cd1c4"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Hvatač Demona",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "e56b694f-ba6f-4929-8b81-dee33b9ba853"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Transdimenzionalni Bodež",
+      "data": {},
+      "mechanic_ids": [
+        "03a90e65-f871-46d0-886f-191f8e8d2dcd"
+      ],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "f9db6ad0-49f1-41eb-bddf-f357816d6de2"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Demon u Ćupu",
+      "data": {},
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
+        "5309000c-7a57-4f79-98de-34dfc35776c1"
+      ],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "e08e6cf5-2611-48e2-b4de-d4033124a364"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Al-Zarova Lubanja",
+      "data": {},
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
+        "49b40778-30f3-4367-b379-2f3f083a6fd0"
+      ],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "6c9e0240-0c1b-4b3a-a498-e4a72d40a526"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Knjiga Imena",
+      "data": {},
+      "mechanic_ids": [
+        "49b40778-30f3-4367-b379-2f3f083a6fd0"
+      ],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "9acdc5e4-52bd-44b2-bac6-ae21aa953210"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Lažni General",
+      "data": {},
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f"
+      ],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "d23a64d1-b882-45dc-aab4-bccc85cba02a"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Durbin",
+      "data": {
+        "Type": "Početni - Posljednja ekspedicija"
+      },
+      "mechanic_ids": [
+        "8fc84fea-c157-4917-94d6-4c71e15fd5ff"
+      ],
+      "tags": [
+        "artefakti",
+        "posljednja ekspedicija"
+      ],
+      "id": "0a6820d9-1c72-4434-aa60-62b1ce9666dd"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Oprema za penjanje",
+      "data": {
+        "Type": "Početni - Posljednja ekspedicija"
+      },
+      "mechanic_ids": [
+        "03a90e65-f871-46d0-886f-191f8e8d2dcd"
+      ],
+      "tags": [
+        "artefakti",
+        "posljednja ekspedicija"
+      ],
+      "id": "f908d21e-a936-4ef7-bf44-2b367d46cf5c"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Drevni Kompas",
+      "data": {
+        "Type": "Početni - Posljednja ekspedicija"
+      },
+      "mechanic_ids": [],
+      "tags": [
+        "artefakti",
+        "posljednja ekspedicija"
+      ],
+      "id": "2bf196af-7aff-4248-a593-6c6c5dd5e6a7"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Mistična Kutija",
+      "data": {
+        "Type": "Početni - Gilda"
+      },
+      "mechanic_ids": [],
+      "tags": [
+        "artefakti",
+        "gilda"
+      ],
+      "id": "0bd1e190-c3ad-4ef7-bffe-2c66fb49eb44"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Ratni Planovi",
+      "data": {
+        "Type": "Početni - Legija"
+      },
+      "mechanic_ids": [
+        "03a90e65-f871-46d0-886f-191f8e8d2dcd"
+      ],
+      "tags": [
+        "artefakti",
+        "legija"
+      ],
+      "id": "85ccece0-8551-4d66-93d7-dce2743d9ed2"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Legijin Pečat",
+      "data": {
+        "Type": "Početni - Legija"
+      },
+      "mechanic_ids": [
+        "5cb84b33-a1d9-48a4-9725-ea9f56e8908a"
+      ],
+      "tags": [
+        "artefakti",
+        "legija"
+      ],
+      "id": "93b09501-1dc3-4c18-ad65-83733f44719c"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Zastava V. Legije",
+      "data": {
+        "Type": "Početni - Legija"
+      },
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
+        "00d12df3-67a7-4a7f-a034-0896e534ea70"
+      ],
+      "tags": [
+        "artefakti",
+        "legija"
+      ],
+      "id": "f577f1b6-8b2e-427a-af1a-204664f60086"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Iskrivljena statua",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "a889026f-f06d-40d2-a702-fd499b2b372e"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Sveta voda",
+      "data": {
+        "Type": "Početni - Odred minulog sunca"
+      },
+      "mechanic_ids": [
+        "03c3ad95-91c2-4a8d-aaa4-c57a617fc808"
+      ],
+      "tags": [
+        "artefakti",
+        "odred minulog sunca"
+      ],
+      "id": "b816b9f9-48a0-41a8-9295-3216fdb26d96"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Biljna medicina",
+      "data": {
+        "Type": "Početni - Lovci na čudovišta"
+      },
+      "mechanic_ids": [
+        "4086e696-c0ee-4565-8a17-6e69068d20f4",
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f"
+      ],
+      "tags": [
+        "artefakti",
+        "lovci na čudovišta"
+      ],
+      "id": "85bf2f41-a19f-4ad1-8d90-8797ec2e09ad"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Priručnik o lovu na čudovišta",
+      "data": {
+        "Type": "Početni - Lovci na čudovišta"
+      },
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f"
+      ],
+      "tags": [
+        "artefakti",
+        "lovci na čudovišta"
+      ],
+      "id": "f26e2b2d-df20-4865-b7dd-be626e620ef0"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Lovački rog",
+      "data": {
+        "Type": "Početni - Lovci na čudovišta"
+      },
+      "mechanic_ids": [
+        "25cc3098-0fdb-47fd-a651-68cccb2e0fd1"
+      ],
+      "tags": [
+        "artefakti",
+        "lovci na čudovišta"
+      ],
+      "id": "ca1c0701-92f0-4d5b-a953-2ae4e52b27c7"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Baldwinova maska",
+      "data": {},
+      "mechanic_ids": [
+        "d00c81f3-04fc-4a28-9244-a684e514b08d"
+      ],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "6c8c519b-e5d5-4069-9454-0b289cfa2f81"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Triglav nordarski",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "artefakti"
+      ],
+      "id": "4357a0a2-ca29-4d49-84f9-5ba8d6be8ccd"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "f3cf2cfc-0017-45ba-ac36-7938cdea1d4e",
+      "name": "Yarino Stopalo",
+      "data": {
+        "Type": "Relikvija"
+      },
+      "mechanic_ids": [
+        "03a90e65-f871-46d0-886f-191f8e8d2dcd"
+      ],
+      "tags": [
+        "relikvija",
+        "odred minulog sunca"
+      ],
+      "id": "a8079829-190e-4920-ab5b-c3a66150e49e"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "f3cf2cfc-0017-45ba-ac36-7938cdea1d4e",
+      "name": "Ithanova Pluća",
+      "data": {
+        "Type": "Relikvija"
+      },
+      "mechanic_ids": [
+        "87ce01d9-a556-4785-b4a1-50e88294bde1"
+      ],
+      "tags": [
+        "relikvija",
+        "odred minulog sunca"
+      ],
+      "id": "6e248e70-5958-442b-9ae7-eca1c6248f7c"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "f3cf2cfc-0017-45ba-ac36-7938cdea1d4e",
+      "name": "Egelijino Oko",
+      "data": {
+        "Type": "Relikvija"
+      },
+      "mechanic_ids": [
+        "9b8c78db-8374-40b1-b989-3fa3e398b929"
+      ],
+      "tags": [
+        "relikvija",
+        "odred minulog sunca"
+      ],
+      "id": "3b037be5-e451-44de-a663-c46ec702540f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "f3cf2cfc-0017-45ba-ac36-7938cdea1d4e",
+      "name": "Dunirov Prst",
+      "data": {
+        "Type": "Relikvija"
+      },
+      "mechanic_ids": [
+        "25cc3098-0fdb-47fd-a651-68cccb2e0fd1",
+        "03a90e65-f871-46d0-886f-191f8e8d2dcd"
+      ],
+      "tags": [
+        "relikvija",
+        "odred minulog sunca"
+      ],
+      "id": "90a727af-7534-4539-b27e-7e6fa88f412e"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "f3cf2cfc-0017-45ba-ac36-7938cdea1d4e",
+      "name": "Averinovo Srce",
+      "data": {
+        "Type": "Relikvija"
+      },
+      "mechanic_ids": [
+        "4086e696-c0ee-4565-8a17-6e69068d20f4"
+      ],
+      "tags": [
+        "odred minulog sunca",
+        "relikvija"
+      ],
+      "id": "eb81fec0-39f6-495c-9ac8-18f692deb28e"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "6628cf0e-a6ac-4324-ace3-bae08d482ef0",
+      "name": "Pontifex Maximus",
+      "data": {},
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
+        "00d12df3-67a7-4a7f-a034-0896e534ea70"
+      ],
+      "tags": [
+        "zapovjednik",
+        "general",
+        "odred minulog sunca"
+      ],
+      "id": "ff393f6b-5aa8-47c2-8938-278176c2ed9c"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "6628cf0e-a6ac-4324-ace3-bae08d482ef0",
+      "name": "Inkvizitor",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "čudovište",
+        "hereza crne vrane",
+        "elitna"
+      ],
+      "id": "f40b4101-040b-4f0a-b3cb-a279f94f2be8"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "03185944-206b-47d8-895f-a90bf09814ca",
+      "name": "Skretanje2",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "polje",
+        "skretanje"
+      ],
+      "id": "da458a1c-f6bb-4a2e-9c1a-d1295f50055d"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "03185944-206b-47d8-895f-a90bf09814ca",
+      "name": "Skretanje1",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "polje",
+        "skretanje"
+      ],
+      "id": "ebc97b69-31ad-48eb-bcb0-da6c8ec49fd4"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "3033c6e7-0be0-488f-a27a-1712698d3279",
+      "name": "Valmarske Kosti",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "trofej"
+      ],
+      "id": "50064de5-2aaa-4fe2-b354-61d5fdef8cae"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "3033c6e7-0be0-488f-a27a-1712698d3279",
+      "name": "Očnjak",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "trofej"
+      ],
+      "id": "8b949798-7e1d-4a2d-97cc-94e3ecf5c21a"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
+      "name": "Posljednja Ekspedicija",
+      "data": {},
+      "mechanic_ids": [
+        "9b8c78db-8374-40b1-b989-3fa3e398b929"
+      ],
+      "tags": [
+        "frakcija"
+      ],
+      "id": "634845aa-f169-4d93-83f7-393f4ea730d2"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
+      "name": "Gilda",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "frakcije"
+      ],
+      "id": "e09225a9-6d71-427f-a39e-3473c9c0f78f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
+      "name": "Odred Minulog Sunca",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "frakcije"
+      ],
+      "id": "eac40a6c-e2f0-47ef-936d-fdc1582b995f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
+      "name": "Lovci na Čudovišta",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "frakcije"
+      ],
+      "id": "3f502550-0ba9-4868-9a05-edd78e910d51"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
+      "name": "Legija",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "frakcije"
+      ],
+      "id": "b1943bbb-8a52-414f-9496-3e75b7f8016a"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "dd22a3ca-2ed0-42be-9ecc-57b49543ea35",
+      "name": "Karhedonski zlatnici",
+      "data": {},
+      "mechanic_ids": [],
+      "tags": [
+        "blago"
+      ],
+      "id": "ef4cce15-3c81-4b6c-af6a-9cea9bcbf7fb"
+    }
+  ],
+  "Idea": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Borbeni probijač ( artefakt )",
+      "description": "Mali ratni ovan probijač, koji može nositi jedna osoba, napravljen od sivkastog drva metalnih djelova i velike metalne lubanje sa ovnovskim rogovima na vrhu. Efekt- u borbi uništava 1 štit (?), ako u borbu...",
+      "status": "not_started",
+      "likes": [],
+      "dislikes": [],
+      "id": "109fe08b-e9e1-4bfc-9533-4b71870a4b79"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Sijač Ratova ( artefakt)",
+      "description": "Ogromni drevni bubanj, Gilda pretpostavlja da je izrađen u prvom dobu poslije Velkog Pada. Izrađen od jednostavnih materijala sa crvenim spiralnim ukrasima po sebi, te dvije privezane velike kosti, koji...",
+      "status": "not_started",
+      "likes": [],
+      "dislikes": [],
+      "id": "333baf47-58ea-4a8d-8314-0397047e325a"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Kruna utišane vlasti ( artefakt)",
+      "description": "Artefakt (ili nešto drugo) koji poništava moć generala vojske protiv koje se boriš Nakon mnogih pobijeđenih bitaka, general se uvjerio da je kralj, od nedavno nitko mu više ne vjeruje. Vodi li nas ovo ...",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "dee0e9b6-08bd-4bb1-9387-40eb7568591b"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "?",
+      "description": "One use artefakt, koji ti omogućuje da oživiš neki uništeni artefakt, mislio sam nekl kameni totem ili tak neš, ili neki drevni oblik koji vibrira",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "ef6f96af-4519-420f-8ac9-8f468656b4e9"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "?",
+      "description": "Neki artefakt koji ti omogućuje da se teleportiraš od jedne do druge rupe na mapi ( naravno izbalansirano), mislio sam možda ili neki ogrtač tamni ili možda neki jako teški predmet, pa te kao...",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "e2fb9b1f-78a0-4b2c-85f8-1ad44edc74e5"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "One... One su žive ( Event)",
+      "description": "Ruševine su nekada davno bile napravljene s nekom svrhom, no možemo samo nagađati koja je ona bila. Kako god bilo ruševine još uvijek djeluju, one su žive. Efekt- Prva tri kruga polja oko Kapitolija se...",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com",
+        "matko.vasovic@gmail.com",
+        "jakov.vehar@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "08661e4b-9882-45f6-b014-1a8d17ec6b45"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Sveti Rat ( Event/Odred)",
+      "description": "Event: Trajanje- 1 r. Lore- I Sunce mu se objavilo, reklo je prinesite mi ih u molitvi ili u pepelu... Knjiga Odmazde 12, 4 Efekt- Odred dobija mali bonus u borbi i dobijaju pare za svaku ubijenu trupu, ako ih...",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com",
+        "matko.vasovic@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "b5b8c4e4-b7ab-44ce-ab57-24957c944814"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Yarino Stopalo ( relikvija )",
+      "description": "Yara je bila jedna od prvih hodočasnica, iz dana u dan je hodala i hodala, uvijek s brojanicom u ruci i jednostavnim sandalama na stopalima. Hodala je i hodala, od svetišta do svetišta uvijek moleći. Njezi...",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "3ffa0584-7be3-4dd5-b5e6-77fa92c12288"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Ithanova (?) Pluća (relikvija)",
+      "description": "Ithan je bio svetac koji je za vrijeme požara u njegovom gradu molio u kapeli za otkupljenje ljudi u gradu, kako je kapela počela gorjeti, miomirisi su se zapalili, Ithan je udisao dim i miomirise, nastavljući...",
+      "status": "finished",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "d20a38b2-10e0-4c81-bf0b-f71d26a03c76"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Ritualne žrtve (čudovište/Hereza Crne Vrane/Običn)",
+      "description": "Basic encounter, ili samo niske statistike ili druga ideja, oni su samo mamac, izvlačiš dodatni HCV encounter",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "c87aa1f0-7fe4-43e4-a87d-084e8faa1421"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Prorok ( čudovište/ Hereza Crne Vrane/Legenda)",
+      "description": "Neki dost jaki encounter, ako ga ne ubiješ dovoljno brzo ima \"Proročanstvo/Viziju\" koja se ispuni i odmah otvoriš sljedeću event kartu i izvršiš efekte. Uz to može imat neki pasiv možda, kjznm...",
+      "status": "not_started",
+      "likes": [
+        "tomekmaleni@gmail.com",
+        "shadowmaster1705@gmail.com"
+      ],
+      "dislikes": [],
+      "id": "97de23ad-1bf6-4311-8430-f29685d52f6d"
+    }
+  ],
+  "Task": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Isprintati figurice",
+      "description": "",
+      "status": "in_progress",
+      "priority": "medium",
+      "assignee_email": "jakov.vehar@gmail.com",
+      "assignee_name": "Jakov Vehar Kocačić Augustin",
+      "id": "9ae26468-eb0b-46fd-85ae-1e615fa2d26e"
+    }
+  ],
+  "PlaytestSession": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "session_date": "2026-01-18",
+      "players": "Ja, Ti, On, ona, oni",
+      "notes": "Ja - Legija  (Dobio)\nTi - Monster Hunter\nOn - Odred minulog sunca\nOna - Gil...\nOni - ......",
+      "what_worked": "Movement\nLore\nRelikvije",
+      "what_needs_work": "Combat\nArtefakti\nGenerali",
+      "id": "77850f1c-8f32-4a77-99b1-64db3a119653"
+    }
+  ],
+  "ChatMessage": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "folder_id": "4685688d-03b2-4b18-9c93-eb24c85475d5",
+      "sender_email": "womir0706@gmail.com",
+      "sender_name": "Vladislav Groza",
+      "content": "Eo, prve figure su isprintane",
+      "id": "6d4c3ca0-d541-46cc-8730-55db1fb31e8f"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "folder_id": "4685688d-03b2-4b18-9c93-eb24c85475d5",
+      "sender_email": "womir0706@gmail.com",
+      "sender_name": "Vladislav Groza",
+      "content": "Kaj mislite o dizajnu,ovog zelota ( lijevo) mislim mjenjat, produžit mu noge i povećat glavu",
+      "id": "bbd750f2-8f2e-4d95-8101-57ccae9ec608"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "folder_id": "22d8aa62-dde0-4528-a6d8-e312e5dad3f9",
+      "sender_email": "jakov.vehar@gmail.com",
+      "sender_name": "Jakov Vehar Kocačić Augustin",
+      "content": "kkkkl",
+      "id": "8bdc34ea-0146-455d-8b25-08309069d43c"
+    }
+  ],
+  "_users": [
+    {
+      "email": "tomekmaleni@gmail.com",
+      "full_name": "Tomislav Matoković",
+      "created_date": "2026-03-26T15:33:06.435Z"
+    },
+    {
+      "email": "shadowmaster1705@gmail.com",
+      "full_name": "Ying Yang",
+      "created_date": "2026-03-26T16:23:31.280Z"
+    },
+    {
+      "email": "matko.vasovic@gmail.com",
+      "full_name": "Matkoosymous W",
+      "created_date": "2026-03-26T16:23:31.280Z"
+    },
+    {
+      "email": "jakov.vehar@gmail.com",
+      "full_name": "Jakov Vehar Kocačić Augustin",
+      "created_date": "2026-03-26T16:23:31.280Z"
+    },
+    {
+      "email": "womir0706@gmail.com",
+      "full_name": "Vladislav Groza",
+      "created_date": "2026-03-26T16:23:31.280Z"
+    },
+    {
+      "email": "f.tomic1801@gmail.com",
+      "full_name": "Filip Tomić",
+      "created_date": "2026-03-26T16:23:31.280Z"
+    }
+  ]
+}
