@@ -692,7 +692,8 @@ if (fs.existsSync(DIST_DIR)) {
             if (!Array.isArray(entities)) continue;
             for (const entity of entities) {
               const now = new Date().toISOString();
-              insert.run(entity.id, entityType, JSON.stringify(entity), entity.created_date || now, entity.updated_date || now);
+              const entityId = entity.id || uuidv4();
+              insert.run(entityId, entityType, JSON.stringify(entity), entity.created_date || now, entity.updated_date || now);
             }
           }
           if (data._users) {
