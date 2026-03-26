@@ -2,6 +2,17 @@
 
 A collaborative board game design workspace where teams can organize game assets, brainstorm ideas, and track development progress together.
 
+## Join Online
+
+**The app is live at: https://gameforge-1-y9s0.onrender.com**
+
+1. Open the link above
+2. Enter your name and email (no password needed)
+3. Create a new project or join an existing one with an invite code
+4. Share the invite code with your friends so they can join too
+
+> The free server sleeps after 15 min of inactivity. The first load after sleep takes ~30 seconds — just wait for it.
+
 ## Features
 
 - **Projects** with invite codes for team collaboration
@@ -23,25 +34,6 @@ A collaborative board game design workspace where teams can organize game assets
 - **Frontend**: React, Vite, Tailwind CSS, shadcn/ui, React Query, React Router
 - **Backend**: Express.js, SQLite (better-sqlite3)
 - **Auth**: Simple email/name based (no passwords)
-
-## Deploy to the Web (Render.com - Free)
-
-The easiest way to get GameForge running online so anyone can access it:
-
-1. Fork or push this repo to your GitHub account
-2. Go to [render.com](https://render.com) and sign up with GitHub
-3. Click **New +** → **Web Service**
-4. Connect your **gameforge** repository
-5. Render auto-detects the config from `render.yaml` — click **Apply**
-6. Add a **Disk** under the service settings:
-   - Name: `gameforge-data`
-   - Mount Path: `/opt/render/project/src/data`
-   - Size: 1 GB
-7. Click **Deploy**
-
-After a few minutes you'll get a public URL like `https://gameforge-xxxx.onrender.com`. Share it with your friends — no setup needed on their end.
-
-> **Note**: Render's free tier spins down after 15 min of inactivity. The first request after sleep takes ~30 seconds to wake up. Your data is preserved on the persistent disk.
 
 ## Run Locally
 
@@ -68,15 +60,16 @@ npm start
 
 This builds the frontend and serves everything from the Express server on port 3001.
 
-## Inviting Friends
+## Self-Host on Render.com (Free)
 
-1. Create a project
-2. Go to **Members** and copy the invite code
-3. Share the invite code with your friends
-4. They sign in and click **Join Project** with the code
-
-When running locally, friends on the same network can access the app at `http://<your-ip>:5173`.
-When deployed on Render, just share the Render URL.
+1. Fork this repo to your GitHub account
+2. Go to [render.com](https://render.com) and sign up with GitHub
+3. Click **New +** → **Web Service**, connect the repo
+4. Set **Build Command**: `npm install; npm run build`
+5. Set **Start Command**: `npm run start`
+6. Add environment variable: `NODE_ENV` = `production`
+7. Add environment variable: `NPM_CONFIG_PRODUCTION` = `false`
+8. Select **Free** instance and deploy
 
 ## Project Structure
 
