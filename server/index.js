@@ -119,7 +119,11 @@ function generateBackupJSON() {
   const data = {};
   for (const row of rows) {
     if (!data[row.entity_type]) data[row.entity_type] = [];
-    data[row.entity_type].push(JSON.parse(row.data));
+    const parsed = JSON.parse(row.data);
+    parsed.id = row.id;
+    parsed.created_date = row.created_date;
+    parsed.updated_date = row.updated_date;
+    data[row.entity_type].push(parsed);
   }
   const users = db.prepare('SELECT * FROM users').all();
   data._users = users;
