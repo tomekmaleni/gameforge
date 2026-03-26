@@ -24,7 +24,26 @@ A collaborative board game design workspace where teams can organize game assets
 - **Backend**: Express.js, SQLite (better-sqlite3)
 - **Auth**: Simple email/name based (no passwords)
 
-## Getting Started
+## Deploy to the Web (Render.com - Free)
+
+The easiest way to get GameForge running online so anyone can access it:
+
+1. Fork or push this repo to your GitHub account
+2. Go to [render.com](https://render.com) and sign up with GitHub
+3. Click **New +** → **Web Service**
+4. Connect your **gameforge** repository
+5. Render auto-detects the config from `render.yaml` — click **Apply**
+6. Add a **Disk** under the service settings:
+   - Name: `gameforge-data`
+   - Mount Path: `/opt/render/project/src/data`
+   - Size: 1 GB
+7. Click **Deploy**
+
+After a few minutes you'll get a public URL like `https://gameforge-xxxx.onrender.com`. Share it with your friends — no setup needed on their end.
+
+> **Note**: Render's free tier spins down after 15 min of inactivity. The first request after sleep takes ~30 seconds to wake up. Your data is preserved on the persistent disk.
+
+## Run Locally
 
 ```bash
 # Install dependencies
@@ -40,6 +59,15 @@ This launches:
 
 Open `http://localhost:5173` in your browser, enter your name and email, and create your first project.
 
+## Production Build (Local)
+
+```bash
+npm run build
+npm start
+```
+
+This builds the frontend and serves everything from the Express server on port 3001.
+
 ## Inviting Friends
 
 1. Create a project
@@ -47,7 +75,8 @@ Open `http://localhost:5173` in your browser, enter your name and email, and cre
 3. Share the invite code with your friends
 4. They sign in and click **Join Project** with the code
 
-Everyone on the same network can access the app at `http://<your-ip>:5173`.
+When running locally, friends on the same network can access the app at `http://<your-ip>:5173`.
+When deployed on Render, just share the Render URL.
 
 ## Project Structure
 
