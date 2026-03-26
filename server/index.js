@@ -167,7 +167,7 @@ async function pushBackupToGitHub() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: `Auto-backup ${new Date().toISOString()}`,
+          message: `Auto-backup ${new Date().toISOString()} [skip render]`,
           content: contentBase64,
           branch: GITHUB_BRANCH,
           ...(sha ? { sha } : {}),
