@@ -3,8 +3,9 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 import { useProject } from '../hooks/useProject';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { FolderOpen, Database, BookOpen, Lightbulb, CheckSquare, Image, Search, X, Gamepad2, Users, Trash2, Cog, ClipboardList, Layers } from 'lucide-react';
+import { FolderOpen, Database, BookOpen, Lightbulb, CheckSquare, Image, Search, X, Gamepad2, Users, Trash2, Cog, ClipboardList, Layers, Save, Loader2, Check } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
 
 const NAV_ITEMS = [
   { path: '', icon: Gamepad2, label: 'Overview' },
@@ -26,6 +27,20 @@ export default function ProjectSidebar({ onClose }) {
   const { projectId } = useParams();
   const location = useLocation();
   const { project, role } = useProject();
+  const [backupState, setBackupState] = React.useState('idle'); // idle | saving | done | error
+
+  const handleBackup = async () => {
+    setBackupState('saving');
+    try {
+      const res = await fetch('/api/backup', { method: 'POST', credentials: 'include' });
+      if (!res.ok) throw new Error((await res.json()).error);
+      setBackupState('done');
+      setTimeout(() => setBackupState('idle'), 3000);
+    } catch {
+      setBackupState('error');
+      setTimeout(() => setBackupState('idle'), 3000);
+    }
+  };
 
   const { data: folders = [] } = useQuery({
     queryKey: ['folders', projectId],
@@ -76,6 +91,27 @@ export default function ProjectSidebar({ onClose }) {
           </div>
         )}
       </ScrollArea>
+      <div className="p-3 border-t border-slate-800">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleBackup}
+          disabled={backupState === 'saving'}
+          className={`w-full justify-start gap-2 text-sm ${
+            backupState === 'done' ? 'text-green-400' :
+            backupState === 'error' ? 'text-red-400' :
+            'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          {backupState === 'saving' ? <Loader2 className="w-4 h-4 animate-spin" /> :
+           backupState === 'done' ? <Check className="w-4 h-4" /> :
+           <Save className="w-4 h-4" />}
+          {backupState === 'saving' ? 'Saving...' :
+           backupState === 'done' ? 'Saved!' :
+           backupState === 'error' ? 'Backup failed' :
+           'Save Backup'}
+        </Button>
+      </div>
     </div>
   );
 }

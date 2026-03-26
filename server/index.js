@@ -45,6 +45,13 @@ db.exec(`
     full_name TEXT NOT NULL,
     created_date TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS files (
+    filename TEXT PRIMARY KEY,
+    mimetype TEXT NOT NULL,
+    data BLOB NOT NULL,
+    created_date TEXT NOT NULL
+  );
 `);
 
 // prepared statements (reused for performance)
@@ -81,8 +88,109 @@ const bulkInsert = db.transaction((rows) => {
 const app = express();
 
 app.use(cors({ origin: true, credentials: true }));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '100mb' }));
 app.use('/uploads', express.static(UPLOADS_DIR));
+
+// Fallback: serve files from DB if not found on disk (after Render redeploy)
+app.use('/uploads', (req, res, next) => {
+  const filename = req.path.replace(/^\//, '');
+  const row = db.prepare('SELECT * FROM files WHERE filename = ?').get(filename);
+  if (!row) return next();
+  // Write back to disk for future requests
+  try {
+    fs.writeFileSync(path.join(UPLOADS_DIR, filename), row.data);
+  } catch { /* ignore write errors */ }
+  res.set('Content-Type', row.mimetype);
+  return res.send(row.data);
+});
+
+// ---------- auto-backup to GitHub ----------
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPO = process.env.GITHUB_REPO || 'tomekmaleni/gameforge';
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'master';
+const BACKUP_INTERVAL = 15 * 60 * 1000; // 15 minutes
+const BACKUP_DEBOUNCE = 2 * 60 * 1000;  // 2 minutes after last change
+
+let dataChanged = false;
+let debounceTimer = null;
+
+function generateBackupJSON() {
+  const rows = db.prepare('SELECT * FROM entities').all();
+  const data = {};
+  for (const row of rows) {
+    if (!data[row.entity_type]) data[row.entity_type] = [];
+    data[row.entity_type].push(JSON.parse(row.data));
+  }
+  const users = db.prepare('SELECT * FROM users').all();
+  data._users = users;
+  try {
+    const files = db.prepare('SELECT filename, mimetype, data, created_date FROM files').all();
+    data._files = files.map(f => ({
+      filename: f.filename,
+      mimetype: f.mimetype,
+      data: Buffer.from(f.data).toString('base64'),
+      created_date: f.created_date,
+    }));
+  } catch { data._files = []; }
+  return JSON.stringify(data, null, 2);
+}
+
+async function pushBackupToGitHub() {
+  if (!GITHUB_TOKEN) return;
+  try {
+    const content = generateBackupJSON();
+    const contentBase64 = Buffer.from(content).toString('base64');
+
+    // Get current file SHA (required for updates)
+    const getRes = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/server/backup.json?ref=${GITHUB_BRANCH}`,
+      { headers: { Authorization: `token ${GITHUB_TOKEN}`, 'User-Agent': 'GameForge' } }
+    );
+    let sha;
+    if (getRes.ok) {
+      const existing = await getRes.json();
+      sha = existing.sha;
+    }
+
+    // Push updated backup.json
+    const putRes = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/server/backup.json`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+          'User-Agent': 'GameForge',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: `Auto-backup ${new Date().toISOString()}`,
+          content: contentBase64,
+          branch: GITHUB_BRANCH,
+          ...(sha ? { sha } : {}),
+        }),
+      }
+    );
+
+    if (putRes.ok) {
+      dataChanged = false;
+      console.log(`Auto-backup pushed to GitHub at ${new Date().toISOString()}`);
+    } else {
+      const err = await putRes.text();
+      console.error('Auto-backup to GitHub failed:', putRes.status, err);
+    }
+  } catch (err) {
+    console.error('Auto-backup to GitHub error:', err.message);
+  }
+}
+
+function markDataChanged() {
+  dataChanged = true;
+  // Debounced backup: 2 min after last change
+  if (GITHUB_TOKEN) {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => pushBackupToGitHub(), BACKUP_DEBOUNCE);
+  }
+}
 
 // ---------- cookie helpers ----------
 function setAuthCookie(res, user) {
@@ -230,6 +338,7 @@ app.post('/api/entities/:entityName', (req, res) => {
     delete data.updated_date;
 
     stmts.insertEntity.run(id, entityName, JSON.stringify(data), now, now);
+    markDataChanged();
 
     return res.status(201).json({
       id,
@@ -277,6 +386,7 @@ app.post('/api/entities/:entityName/bulk', (req, res) => {
     }
 
     bulkInsert(rows);
+    markDataChanged();
     return res.status(201).json(results);
   } catch (err) {
     console.error(`Bulk create ${entityName} error:`, err);
@@ -397,6 +507,7 @@ app.put('/api/entities/:entityName/:id', (req, res) => {
 
     const merged = { ...existingData, ...updates };
     stmts.updateEntity.run(JSON.stringify(merged), now, id, entityName);
+    markDataChanged();
 
     return res.json({
       id,
@@ -421,6 +532,7 @@ app.delete('/api/entities/:entityName/:id', (req, res) => {
     if (result.changes === 0) {
       return res.status(404).json({ error: 'Entity not found' });
     }
+    markDataChanged();
     return res.json({ message: 'Deleted', id });
   } catch (err) {
     console.error(`Delete ${entityName} error:`, err);
@@ -446,6 +558,16 @@ const upload = multer({
 app.post('/api/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file provided' });
+  }
+  // Also save to database so it survives Render redeploys
+  try {
+    const fileData = fs.readFileSync(req.file.path);
+    const now = new Date().toISOString();
+    db.prepare('INSERT OR REPLACE INTO files (filename, mimetype, data, created_date) VALUES (?, ?, ?, ?)')
+      .run(req.file.filename, req.file.mimetype, fileData, now);
+    markDataChanged();
+  } catch (err) {
+    console.error('Failed to save file to DB:', err.message);
   }
   return res.json({ file_url: `/uploads/${req.file.filename}` });
 });
@@ -475,10 +597,32 @@ app.get('/api/export', (req, res) => {
     }
     const users = db.prepare('SELECT * FROM users').all();
     data._users = users;
+    // Include uploaded files as base64
+    const files = db.prepare('SELECT filename, mimetype, data, created_date FROM files').all();
+    data._files = files.map(f => ({
+      filename: f.filename,
+      mimetype: f.mimetype,
+      data: Buffer.from(f.data).toString('base64'),
+      created_date: f.created_date,
+    }));
     res.setHeader('Content-Disposition', 'attachment; filename="gameforge-backup.json"');
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// ---------- manual backup trigger ----------
+app.post('/api/backup', async (req, res) => {
+  if (!GITHUB_TOKEN) {
+    return res.status(501).json({ error: 'Auto-backup not configured (no GITHUB_TOKEN)' });
+  }
+  try {
+    dataChanged = true; // force it
+    await pushBackupToGitHub();
+    res.json({ message: 'Backup saved to GitHub successfully', timestamp: new Date().toISOString() });
+  } catch (err) {
+    res.status(500).json({ error: 'Backup failed: ' + err.message });
   }
 });
 
@@ -490,7 +634,7 @@ app.post('/api/import', (req, res) => {
     const insert = db.prepare('INSERT OR REPLACE INTO entities (id, entity_type, data, created_date, updated_date) VALUES (?, ?, ?, ?, ?)');
     const tx = db.transaction(() => {
       for (const [entityType, entities] of Object.entries(data)) {
-        if (entityType === '_users') continue;
+        if (entityType.startsWith('_')) continue; // skip _users, _files
         if (!Array.isArray(entities)) continue;
         for (const entity of entities) {
           const now = new Date().toISOString();
@@ -501,8 +645,19 @@ app.post('/api/import', (req, res) => {
         const upsert = db.prepare('INSERT OR REPLACE INTO users (email, full_name, created_date) VALUES (?, ?, ?)');
         for (const u of data._users) upsert.run(u.email, u.full_name, u.created_date);
       }
+      // Restore uploaded files
+      if (data._files && Array.isArray(data._files)) {
+        const insertFile = db.prepare('INSERT OR REPLACE INTO files (filename, mimetype, data, created_date) VALUES (?, ?, ?, ?)');
+        for (const f of data._files) {
+          const buf = Buffer.from(f.data, 'base64');
+          insertFile.run(f.filename, f.mimetype, buf, f.created_date);
+          // Also write to disk
+          try { fs.writeFileSync(path.join(UPLOADS_DIR, f.filename), buf); } catch { /* ignore */ }
+        }
+      }
     });
     tx();
+    markDataChanged();
     res.json({ message: 'Import complete' });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -533,7 +688,7 @@ if (fs.existsSync(DIST_DIR)) {
         const insert = db.prepare('INSERT OR REPLACE INTO entities (id, entity_type, data, created_date, updated_date) VALUES (?, ?, ?, ?, ?)');
         const tx = db.transaction(() => {
           for (const [entityType, entities] of Object.entries(data)) {
-            if (entityType === '_users') continue;
+            if (entityType.startsWith('_')) continue; // skip _users, _files
             if (!Array.isArray(entities)) continue;
             for (const entity of entities) {
               const now = new Date().toISOString();
@@ -543,6 +698,16 @@ if (fs.existsSync(DIST_DIR)) {
           if (data._users) {
             const upsert = db.prepare('INSERT OR REPLACE INTO users (email, full_name, created_date) VALUES (?, ?, ?)');
             for (const u of data._users) upsert.run(u.email, u.full_name, u.created_date);
+          }
+          // Restore uploaded files
+          if (data._files && Array.isArray(data._files)) {
+            const insertFile = db.prepare('INSERT OR REPLACE INTO files (filename, mimetype, data, created_date) VALUES (?, ?, ?, ?)');
+            for (const f of data._files) {
+              const buf = Buffer.from(f.data, 'base64');
+              insertFile.run(f.filename, f.mimetype, buf, f.created_date);
+              try { fs.writeFileSync(path.join(UPLOADS_DIR, f.filename), buf); } catch { /* ignore */ }
+            }
+            console.log(`Restored ${data._files.length} uploaded files.`);
           }
         });
         tx();
@@ -561,6 +726,43 @@ if (fs.existsSync(DIST_DIR)) {
     }
   }
 }
+
+// ---------- start periodic backup ----------
+if (GITHUB_TOKEN) {
+  setInterval(() => {
+    if (dataChanged) pushBackupToGitHub();
+  }, BACKUP_INTERVAL);
+  console.log(`Auto-backup enabled: GitHub repo ${GITHUB_REPO}, every ${BACKUP_INTERVAL / 60000}min`);
+} else {
+  console.log('Auto-backup disabled: set GITHUB_TOKEN env var to enable');
+}
+
+// ---------- emergency backup on shutdown ----------
+// Render sends SIGTERM before killing the process — use this window to save data
+async function emergencyBackup(signal) {
+  console.log(`Received ${signal} — running emergency backup...`);
+  if (GITHUB_TOKEN && dataChanged) {
+    try {
+      await pushBackupToGitHub();
+      console.log('Emergency backup to GitHub complete.');
+    } catch (err) {
+      console.error('Emergency backup failed:', err.message);
+    }
+  }
+  // Also save to local backup.json (survives if Render keeps the build cache)
+  try {
+    const json = generateBackupJSON();
+    fs.writeFileSync(path.join(__dirname, 'backup.json'), json);
+    console.log('Emergency backup to local file complete.');
+  } catch (err) {
+    console.error('Local emergency backup failed:', err.message);
+  }
+  db.close();
+  process.exit(0);
+}
+
+process.on('SIGTERM', () => emergencyBackup('SIGTERM'));
+process.on('SIGINT', () => emergencyBackup('SIGINT'));
 
 // ---------- start ----------
 const PORT = process.env.PORT || 3001;
