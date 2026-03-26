@@ -60,6 +60,23 @@ npm start
 
 This builds the frontend and serves everything from the Express server on port 3001.
 
+## Data Persistence
+
+The Ruševine project data is stored in `server/backup.json` in the repo. On Render's free tier, the database resets on each redeploy — but the server automatically restores from this backup on startup.
+
+**To save your current data before redeploying:**
+
+```bash
+npm run backup
+git add server/backup.json
+git commit -m "Update backup"
+git push
+```
+
+**API endpoints for data management:**
+- `GET /api/export` — download the full database as JSON
+- `POST /api/import` — import a JSON backup into the database
+
 ## Self-Host on Render.com (Free)
 
 1. Fork this repo to your GitHub account
