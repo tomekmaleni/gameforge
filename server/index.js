@@ -449,6 +449,20 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   return res.json({ file_url: `/uploads/${req.file.filename}` });
 });
 
+// ---------- seed endpoint (one-time, creates Ruševine project) ----------
+app.post('/api/seed', async (req, res) => {
+  try {
+    // Dynamically import and run the seed
+    const count = db.prepare('SELECT COUNT(*) as c FROM entities WHERE entity_type = ?').get('Project');
+    if (count.c > 0) return res.json({ message: 'Already seeded', skipped: true });
+    const { execSync } = await import('child_process');
+    execSync('node server/seed.js', { cwd: ROOT_DIR, stdio: 'pipe' });
+    res.json({ message: 'Seed complete!' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ---------- serve frontend in production ----------
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 if (fs.existsSync(DIST_DIR)) {
