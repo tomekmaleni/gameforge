@@ -12,12 +12,19 @@ export default function useTrashDelete({ itemType, entityName, invalidateKeys = 
 
   const trashMutation = useMutation({
     mutationFn: async ({ item, name }) => {
-      await base44.entities.TrashItem.create({
-        project_id: projectId, item_type: itemType, item_id: item.id, item_name: name,
-        item_data: item, deleted_by_email: user?.email, deleted_by_name: user?.full_name || user?.email,
-        expires_at: addDays(new Date(), 30).toISOString(),
-      });
+      // Delete entity first, then create trash record
+      // This way if delete fails, nothing goes to trash
       await base44.entities[entityName].delete(item.id);
+      try {
+        await base44.entities.TrashItem.create({
+          project_id: projectId, item_type: itemType, item_id: item.id, item_name: name,
+          item_data: item, deleted_by_email: user?.email, deleted_by_name: user?.full_name || user?.email,
+          expires_at: addDays(new Date(), 30).toISOString(),
+        });
+      } catch (trashErr) {
+        // Item is already deleted — still counts as success
+        console.error('Failed to create trash record:', trashErr);
+      }
     },
     onSuccess: () => {
       invalidateKeys.forEach(key => qc.invalidateQueries({ queryKey: key }));
@@ -25,6 +32,10 @@ export default function useTrashDelete({ itemType, entityName, invalidateKeys = 
       setPending(null);
       toast.success('Moved to trash', { description: 'Item will be permanently deleted in 30 days.' });
       onSuccess?.();
+    },
+    onError: (err) => {
+      setPending(null);
+      toast.error('Failed to delete', { description: err.message });
     },
   });
 
