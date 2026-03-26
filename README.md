@@ -62,20 +62,22 @@ This builds the frontend and serves everything from the Express server on port 3
 
 ## Data Persistence
 
-The Ruševine project data is stored in `server/backup.json` in the repo. On Render's free tier, the database resets on each redeploy — but the server automatically restores from this backup on startup.
+All data (entities, users, and uploaded files) is fully persistent across Render redeploys through multiple safety layers:
 
-**To save your current data before redeploying:**
+1. **Database storage** — uploaded files are stored in SQLite alongside entity data (not just on disk)
+2. **Auto-backup to GitHub** — the server automatically pushes `backup.json` to the repo every 15 minutes (or 2 min after any change) via the GitHub API
+3. **Shutdown backup** — on server shutdown (SIGTERM), an emergency backup is pushed to GitHub
+4. **Pre-push hook** — `npm run backup` runs automatically before every `git push`
+5. **Manual Save button** — click "Save Backup" in the sidebar to trigger an immediate backup
 
-```bash
-npm run backup
-git add server/backup.json
-git commit -m "Update backup"
-git push
-```
+On startup, if the database is empty, the server auto-restores everything from `backup.json` — including uploaded images.
+
+**Required env var on Render:** `GITHUB_TOKEN` (GitHub Personal Access Token with `repo` scope) to enable auto-backup.
 
 **API endpoints for data management:**
 - `GET /api/export` — download the full database as JSON
 - `POST /api/import` — import a JSON backup into the database
+- `POST /api/backup` — trigger an immediate backup to GitHub
 
 ## Self-Host on Render.com (Free)
 
@@ -86,7 +88,8 @@ git push
 5. Set **Start Command**: `npm run start`
 6. Add environment variable: `NODE_ENV` = `production`
 7. Add environment variable: `NPM_CONFIG_PRODUCTION` = `false`
-8. Select **Free** instance and deploy
+8. Add environment variable: `GITHUB_TOKEN` = your GitHub Personal Access Token (with `repo` scope)
+9. Select **Free** instance and deploy
 
 ## Project Structure
 

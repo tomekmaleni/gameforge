@@ -25,11 +25,18 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 
 ## Data Persistence
 - Render free tier has NO persistent disk — DB resets on every redeploy
-- `server/backup.json` is committed to the repo with full database snapshot
-- On server startup, if DB is empty, auto-restores from backup.json
-- `npm run backup` (runs server/export-backup.js) exports local DB → server/backup.json
+- Uploaded files are stored in SQLite `files` table as BLOBs (not just on disk) so they survive redeploys
+- `server/backup.json` is committed to the repo with full database snapshot INCLUDING uploaded files (base64-encoded)
+- On server startup, if DB is empty, auto-restores from backup.json (entities, users, AND files)
+- Files are served from disk first, with DB fallback (auto-writes back to disk on first access)
+- **Auto-backup to GitHub**: every 15min (or 2min after changes), server pushes backup.json via GitHub API (requires `GITHUB_TOKEN` env var)
+- **Shutdown backup**: SIGTERM/SIGINT handler pushes emergency backup before process dies
+- **Pre-push git hook**: `.git/hooks/pre-push` automatically runs `npm run backup` before every push
+- **Manual Save button**: sidebar has "Save Backup" button that triggers `POST /api/backup`
+- `npm run backup` (runs server/export-backup.js) exports local DB + files → server/backup.json
 - `GET /api/export` downloads full DB as JSON from the live server
 - `POST /api/import` imports JSON backup into the database
+- `POST /api/backup` triggers immediate backup push to GitHub
 - `POST /api/seed` runs seed.js (one-time, only if DB empty)
 
 ## Running
@@ -53,7 +60,7 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 
 ## Render Deployment
 - Node 18.x (set in package.json engines)
-- Environment variables: `NODE_ENV=production`, `NPM_CONFIG_PRODUCTION=false`
+- Environment variables: `NODE_ENV=production`, `NPM_CONFIG_PRODUCTION=false`, `GITHUB_TOKEN=<PAT with repo scope>`
 - render.yaml configures the service
 - Auto-deploys on push to master
 - Free tier sleeps after 15min, ~30s cold start
@@ -102,4 +109,3 @@ A board game designed by Tomislav and 5 friends:
 - No WebSocket real-time updates (chat uses 3-second polling instead of Base44's subscribe)
 - LoreWiki uses plain Textarea instead of ReactQuill rich text editor
 - Render free tier: ~30s cold start after 15min inactivity
-- Uploaded files on Render are lost on redeploy (only SQLite data is backed up via backup.json)
