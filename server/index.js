@@ -11,8 +11,12 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
-const UPLOADS_DIR = path.join(ROOT_DIR, 'uploads');
-const DB_PATH = path.join(ROOT_DIR, 'gameforge.db');
+// In production (Render), use persistent disk; locally use project root
+const DATA_DIR = process.env.NODE_ENV === 'production'
+  ? (fs.existsSync('/opt/render/project/src/data') ? '/opt/render/project/src/data' : ROOT_DIR)
+  : ROOT_DIR;
+const UPLOADS_DIR = path.join(DATA_DIR, 'uploads');
+const DB_PATH = path.join(DATA_DIR, 'gameforge.db');
 
 // ensure uploads directory exists
 if (!fs.existsSync(UPLOADS_DIR)) {
@@ -445,9 +449,20 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   return res.json({ file_url: `/uploads/${req.file.filename}` });
 });
 
+// ---------- serve frontend in production ----------
+const DIST_DIR = path.join(ROOT_DIR, 'dist');
+if (fs.existsSync(DIST_DIR)) {
+  app.use(express.static(DIST_DIR));
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
+      res.sendFile(path.join(DIST_DIR, 'index.html'));
+    }
+  });
+}
+
 // ---------- start ----------
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`GameForge server running on http://localhost:${PORT}`);
 });
