@@ -9,7 +9,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const DB_PATH = path.join(ROOT_DIR, 'gameforge.db');
 const outPath = path.join(__dirname, 'backup.json');
 
-const LIVE_URL = 'https://gameforge-1-y9s0.onrender.com';
+const LIVE_URL = 'https://gameforge.fly.dev';
 
 // Try to fetch the latest data from the live server first
 // This ensures we never overwrite images/data uploaded on the live server

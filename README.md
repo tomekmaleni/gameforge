@@ -4,14 +4,14 @@ A collaborative board game design workspace where teams can organize game assets
 
 ## Join Online
 
-**The app is live at: https://gameforge-1-y9s0.onrender.com**
+**The app is live at: https://gameforge.fly.dev**
 
 1. Open the link above
 2. Enter your name and email (no password needed)
 3. Create a new project or join an existing one with an invite code
 4. Share the invite code with your friends so they can join too
 
-> The free server sleeps after 15 min of inactivity. The first load after sleep takes ~30 seconds — just wait for it.
+> The server auto-stops when idle. The first load after inactivity takes a few seconds — just wait for it.
 
 ## Features
 
@@ -34,6 +34,7 @@ A collaborative board game design workspace where teams can organize game assets
 - **Frontend**: React, Vite, Tailwind CSS, shadcn/ui, React Query, React Router
 - **Backend**: Express.js, SQLite (better-sqlite3)
 - **Auth**: Simple email/name based (no passwords)
+- **Deployment**: Fly.io with persistent volume (data survives all deploys)
 
 ## Run Locally
 
@@ -62,39 +63,33 @@ This builds the frontend and serves everything from the Express server on port 3
 
 ## Data Persistence
 
-All data (entities, users, and uploaded files) is fully persistent across Render redeploys through multiple safety layers:
+All data is stored in SQLite on a persistent Fly.io volume — it survives all deploys and restarts. Additional safety layers:
 
-1. **Database storage** — uploaded files are stored in SQLite alongside entity data (not just on disk)
-2. **Auto-backup to GitHub** — the server automatically pushes `backup.json` to the repo every 15 minutes (or 2 min after any change) via the GitHub API
-3. **Shutdown backup** — on server shutdown (SIGTERM), an emergency backup is pushed to GitHub
-4. **Pre-push hook** — `npm run backup` runs automatically before every `git push`
-5. **Manual Save button** — click "Save Backup" in the sidebar to trigger an immediate backup
-
-On startup, if the database is empty, the server auto-restores everything from `backup.json` — including uploaded images.
-
-**Required env var on Render:** `GITHUB_TOKEN` (GitHub Personal Access Token with `repo` scope) to enable auto-backup.
+1. **Auto-backup to GitHub** — the server pushes `backup.json` to the repo every 5 minutes (or 30s after any change) via the GitHub API
+2. **Shutdown backup** — on server shutdown (SIGTERM), an emergency backup is pushed to GitHub
+3. **Manual Save button** — click "Save Backup" in the sidebar to trigger an immediate backup
+4. **Auto-restore** — on startup, if the database is empty, the server restores from `backup.json`
 
 **API endpoints for data management:**
 - `GET /api/export` — download the full database as JSON
 - `POST /api/import` — import a JSON backup into the database
 - `POST /api/backup` — trigger an immediate backup to GitHub
 
-## Self-Host on Render.com (Free)
+## Deploy to Fly.io
 
-1. Fork this repo to your GitHub account
-2. Go to [render.com](https://render.com) and sign up with GitHub
-3. Click **New +** → **Web Service**, connect the repo
-4. Set **Build Command**: `npm install; npm run build`
-5. Set **Start Command**: `npm run start`
-6. Add environment variable: `NODE_ENV` = `production`
-7. Add environment variable: `NPM_CONFIG_PRODUCTION` = `false`
-8. Add environment variable: `GITHUB_TOKEN` = your GitHub Personal Access Token (with `repo` scope)
-9. Select **Free** instance and deploy
+1. Install [Fly CLI](https://fly.io/docs/flyctl/install/)
+2. `fly auth signup` (or `fly auth login`)
+3. `fly apps create gameforge`
+4. `fly volumes create gameforge_data --region fra --size 1`
+5. `fly secrets set GITHUB_TOKEN=your_token_here`
+6. `fly deploy`
 
 ## Project Structure
 
 ```
 server/index.js          Express API + SQLite database
+Dockerfile               Docker build for Fly.io
+fly.toml                 Fly.io configuration
 src/
   api/base44Client.js    API client SDK
   components/

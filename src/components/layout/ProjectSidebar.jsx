@@ -28,17 +28,22 @@ export default function ProjectSidebar({ onClose }) {
   const location = useLocation();
   const { project, role } = useProject();
   const [backupState, setBackupState] = React.useState('idle'); // idle | saving | done | error
+  const [backupInfo, setBackupInfo] = React.useState('');
 
   const handleBackup = async () => {
     setBackupState('saving');
+    setBackupInfo('');
     try {
       const res = await fetch('/api/backup', { method: 'POST', credentials: 'include' });
-      if (!res.ok) throw new Error((await res.json()).error);
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Backup failed');
       setBackupState('done');
-      setTimeout(() => setBackupState('idle'), 3000);
-    } catch {
+      setBackupInfo(`${json.totalEntities} items saved`);
+      setTimeout(() => { setBackupState('idle'); setBackupInfo(''); }, 5000);
+    } catch (err) {
       setBackupState('error');
-      setTimeout(() => setBackupState('idle'), 3000);
+      setBackupInfo(err.message || 'Unknown error');
+      setTimeout(() => { setBackupState('idle'); setBackupInfo(''); }, 5000);
     }
   };
 
@@ -107,8 +112,8 @@ export default function ProjectSidebar({ onClose }) {
            backupState === 'done' ? <Check className="w-4 h-4" /> :
            <Save className="w-4 h-4" />}
           {backupState === 'saving' ? 'Saving...' :
-           backupState === 'done' ? 'Saved!' :
-           backupState === 'error' ? 'Backup failed' :
+           backupState === 'done' ? (backupInfo || 'Saved!') :
+           backupState === 'error' ? (backupInfo || 'Backup failed') :
            'Save Backup'}
         </Button>
       </div>

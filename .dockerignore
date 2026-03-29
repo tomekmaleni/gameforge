@@ -1,0 +1,9 @@
+node_modules
+dist
+*.db
+*.db-wal
+*.db-shm
+uploads/
+.git
+.gitignore
+CLAUDE.md

@@ -1,13 +1,14 @@
 # GameForge - Board Game Studio
 
 ## CRITICAL RULES
-- **ALWAYS run `npm run backup` before any git commit/push** — this saves the current database to server/backup.json so data isn't lost on Render redeploy
+- **ALWAYS run `npm run backup` before any git commit/push** — this saves the current database to server/backup.json as a safety net
 - The backup workflow is: `npm run backup && git add -A && git commit -m "..." && git push`
+- After pushing, deploy to Fly.io with: `fly deploy`
 
 ## Project Overview
 Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board game design. Built to remove entry limits from the Base44 free plan. The user (Tomislav) and 5 friends collaborate on a board game called "Ruševine".
 
-**Live:** https://gameforge-1-y9s0.onrender.com
+**Live:** https://gameforge.fly.dev
 **Repo:** https://github.com/tomekmaleni/gameforge (branch: master)
 **Local path:** C:\Users\tomislav\OneDrive\Documents\gameforge
 
@@ -15,7 +16,7 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 - **Frontend:** React 18, Vite, Tailwind CSS, shadcn/ui, React Query, React Router
 - **Backend:** Express.js, SQLite (better-sqlite3), multer for uploads
 - **Auth:** Email/name based (no passwords), cookie-based sessions
-- **Deployment:** Render.com free tier, auto-deploys on push to master
+- **Deployment:** Fly.io with persistent volume (SQLite survives deploys)
 
 ## Architecture
 - Generic entity CRUD: single `entities` table with JSON `data` column in SQLite
@@ -24,16 +25,13 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 - The frontend code was ported nearly 1:1 from the original Base44 app screenshots
 
 ## Data Persistence
-- Render free tier has NO persistent disk — DB resets on every redeploy
-- Uploaded files are stored in SQLite `files` table as BLOBs (not just on disk) so they survive redeploys
-- `server/backup.json` is committed to the repo with full database snapshot INCLUDING uploaded files (base64-encoded)
-- On server startup, if DB is empty, auto-restores from backup.json (entities, users, AND files)
-- Files are served from disk first, with DB fallback (auto-writes back to disk on first access)
-- **Auto-backup to GitHub**: every 15min (or 2min after changes), server pushes backup.json via GitHub API (requires `GITHUB_TOKEN` env var)
+- **Primary:** Fly.io persistent volume mounted at `/data` — SQLite DB survives all deploys and restarts
+- Uploaded files are stored in SQLite `files` table as BLOBs AND on disk
+- **Backup safety net (GitHub):** auto-backup every 5min (or 30s after changes) pushes backup.json to GitHub via API (requires `GITHUB_TOKEN` env var)
 - **Shutdown backup**: SIGTERM/SIGINT handler pushes emergency backup before process dies
-- **Pre-push git hook**: `.git/hooks/pre-push` automatically runs `npm run backup` before every push
 - **Manual Save button**: sidebar has "Save Backup" button that triggers `POST /api/backup`
-- `npm run backup` (runs server/export-backup.js) exports local DB + files → server/backup.json
+- On server startup, if DB is empty, auto-restores from backup.json (entities, users, AND files)
+- `npm run backup` (runs server/export-backup.js) exports live server DB → server/backup.json
 - `GET /api/export` downloads full DB as JSON from the live server
 - `POST /api/import` imports JSON backup into the database
 - `POST /api/backup` triggers immediate backup push to GitHub
@@ -42,7 +40,8 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 ## Running
 - `npm run dev` — starts Express (port 3001) + Vite (port 5173) concurrently
 - `npm run build && npm start` — production mode, serves everything on port 3001
-- `npm run backup` — export DB to server/backup.json (DO THIS BEFORE EVERY PUSH)
+- `npm run backup` — export DB to server/backup.json
+- `fly deploy` — deploy to Fly.io
 - `node server/seed.js` — seed the Ruševine project data from scratch
 
 ## Key Files
@@ -50,6 +49,8 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 - `server/seed.js` — Database seed script with all Ruševine data
 - `server/backup.json` — Full database snapshot (committed to repo)
 - `server/export-backup.js` — Script to export DB to backup.json
+- `Dockerfile` — Docker build for Fly.io deployment
+- `fly.toml` — Fly.io configuration (persistent volume, Frankfurt region)
 - `src/App.jsx` — Routes, auth, login screen
 - `src/api/base44Client.js` — API client (replaces Base44 SDK)
 - `src/components/hooks/useProject.jsx` — Project context provider (user, role, canEdit)
@@ -58,13 +59,14 @@ Self-hosted clone of a Base44 app (rusevine5.base44.app) for collaborative board
 - `src/components/layout/ProjectSidebar.jsx` — Navigation sidebar
 - `src/pages/` — All 15 page components
 
-## Render Deployment
-- Node 18.x (set in package.json engines)
-- Environment variables: `NODE_ENV=production`, `NPM_CONFIG_PRODUCTION=false`, `GITHUB_TOKEN=<PAT with repo scope>`
-- render.yaml configures the service
-- Auto-deploys on push to master
-- Free tier sleeps after 15min, ~30s cold start
-- Service URL: https://gameforge-1-y9s0.onrender.com
+## Fly.io Deployment
+- Docker-based deployment with Node 18
+- Persistent volume `gameforge_data` mounted at `/data` (1GB, Frankfurt region)
+- Environment variables: `NODE_ENV=production`, `GITHUB_TOKEN=<PAT with repo scope>` (set via `fly secrets`)
+- Deploy with: `fly deploy`
+- Logs: `fly logs`
+- Machines auto-stop when idle, auto-start on request
+- Service URL: https://gameforge.fly.dev
 
 ## The Game: Ruševine
 A board game designed by Tomislav and 5 friends:
@@ -93,19 +95,14 @@ A board game designed by Tomislav and 5 friends:
 4. Replaced ReactQuill with plain Textarea in LoreWiki (avoids dependency issues)
 5. Created GitHub repo at tomekmaleni/gameforge and pushed
 
-### Render deployment issues & fixes
-- First deploy failed: Node 22 (Render default) had issues with better-sqlite3 → fixed by adding `"engines": {"node": "18.x"}` to package.json
-- Second deploy failed: `vite: not found` → Render only installs production deps by default → fixed by adding `NPM_CONFIG_PRODUCTION=false` env var
-- Third deploy succeeded
-
-### Data migration attempts
-- Tried 3 different browser console scripts to export data from Base44 API — all returned empty arrays (Base44 blocks direct API access)
-- User provided comprehensive screenshots of every section of the Ruševine project
-- I created server/seed.js from the screenshots with all 39 entries, 13 mechanics, 11 ideas, etc.
-- Later added server/backup.json approach for persistence across Render redeploys
+### Migration to Fly.io (2026-03-29)
+- Moved from Render.com free tier (ephemeral filesystem, DB wiped on every deploy) to Fly.io with persistent volume
+- Fixed critical bug: `/api/export` was not including entity IDs, causing data loss on restore
+- Fixed emergency backup to always save on shutdown
+- Reduced auto-backup interval from 15min to 5min, debounce from 2min to 30s
 
 ### Known Limitations
 - Images from original Base44 app weren't migrated (hosted on Base44's CDN) — user would need to re-upload them
 - No WebSocket real-time updates (chat uses 3-second polling instead of Base44's subscribe)
 - LoreWiki uses plain Textarea instead of ReactQuill rich text editor
-- Render free tier: ~30s cold start after 15min inactivity
+- Fly.io free tier: machines auto-stop when idle, cold start on first request

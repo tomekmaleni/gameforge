@@ -12,12 +12,13 @@ import { execSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
-// In production (Render), use persistent disk; locally use project root
+// In production, use persistent volume if available (Fly.io mounts at /data)
 const DATA_DIR = process.env.NODE_ENV === 'production'
-  ? (fs.existsSync('/opt/render/project/src/data') ? '/opt/render/project/src/data' : ROOT_DIR)
+  ? (fs.existsSync('/data') ? '/data' : ROOT_DIR)
   : ROOT_DIR;
 const UPLOADS_DIR = path.join(DATA_DIR, 'uploads');
 const DB_PATH = path.join(DATA_DIR, 'gameforge.db');
+console.log(`Data directory: ${DATA_DIR} (persistent: ${DATA_DIR !== ROOT_DIR})`);
 
 // ensure uploads directory exists
 if (!fs.existsSync(UPLOADS_DIR)) {
@@ -108,8 +109,8 @@ app.use('/uploads', (req, res, next) => {
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'tomekmaleni/gameforge';
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'master';
-const BACKUP_INTERVAL = 15 * 60 * 1000; // 15 minutes
-const BACKUP_DEBOUNCE = 2 * 60 * 1000;  // 2 minutes after last change
+const BACKUP_INTERVAL = 5 * 60 * 1000;  // 5 minutes
+const BACKUP_DEBOUNCE = 30 * 1000;      // 30 seconds after last change
 
 let dataChanged = false;
 let debounceTimer = null;
@@ -593,24 +594,10 @@ app.post('/api/seed', async (req, res) => {
 // ---------- export full database as JSON ----------
 app.get('/api/export', (req, res) => {
   try {
-    const rows = db.prepare('SELECT * FROM entities').all();
-    const data = {};
-    for (const row of rows) {
-      if (!data[row.entity_type]) data[row.entity_type] = [];
-      data[row.entity_type].push(JSON.parse(row.data));
-    }
-    const users = db.prepare('SELECT * FROM users').all();
-    data._users = users;
-    // Include uploaded files as base64
-    const files = db.prepare('SELECT filename, mimetype, data, created_date FROM files').all();
-    data._files = files.map(f => ({
-      filename: f.filename,
-      mimetype: f.mimetype,
-      data: Buffer.from(f.data).toString('base64'),
-      created_date: f.created_date,
-    }));
+    const content = generateBackupJSON();
     res.setHeader('Content-Disposition', 'attachment; filename="gameforge-backup.json"');
-    res.json(data);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(content);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -624,7 +611,12 @@ app.post('/api/backup', async (req, res) => {
   try {
     dataChanged = true; // force it
     await pushBackupToGitHub();
-    res.json({ message: 'Backup saved to GitHub successfully', timestamp: new Date().toISOString() });
+    // Return entity counts so user can verify backup contents
+    const rows = db.prepare('SELECT entity_type, COUNT(*) as count FROM entities GROUP BY entity_type').all();
+    const counts = {};
+    let total = 0;
+    for (const r of rows) { counts[r.entity_type] = r.count; total += r.count; }
+    res.json({ message: 'Backup saved to GitHub successfully', timestamp: new Date().toISOString(), totalEntities: total, counts });
   } catch (err) {
     res.status(500).json({ error: 'Backup failed: ' + err.message });
   }
@@ -642,7 +634,13 @@ app.post('/api/import', (req, res) => {
         if (!Array.isArray(entities)) continue;
         for (const entity of entities) {
           const now = new Date().toISOString();
-          insert.run(entity.id, entityType, JSON.stringify(entity), entity.created_date || now, entity.updated_date || now);
+          const entityId = entity.id || uuidv4();
+          // Strip metadata from data column (stored as separate DB columns)
+          const cleanData = { ...entity };
+          delete cleanData.id;
+          delete cleanData.created_date;
+          delete cleanData.updated_date;
+          insert.run(entityId, entityType, JSON.stringify(cleanData), entity.created_date || now, entity.updated_date || now);
         }
       }
       if (data._users) {
@@ -697,7 +695,12 @@ if (fs.existsSync(DIST_DIR)) {
             for (const entity of entities) {
               const now = new Date().toISOString();
               const entityId = entity.id || uuidv4();
-              insert.run(entityId, entityType, JSON.stringify(entity), entity.created_date || now, entity.updated_date || now);
+              // Strip metadata from data column (stored as separate DB columns)
+              const cleanData = { ...entity };
+              delete cleanData.id;
+              delete cleanData.created_date;
+              delete cleanData.updated_date;
+              insert.run(entityId, entityType, JSON.stringify(cleanData), entity.created_date || now, entity.updated_date || now);
             }
           }
           if (data._users) {
@@ -737,7 +740,7 @@ if (GITHUB_TOKEN) {
   setInterval(() => {
     if (dataChanged) pushBackupToGitHub();
   }, BACKUP_INTERVAL);
-  console.log(`Auto-backup enabled: GitHub repo ${GITHUB_REPO}, every ${BACKUP_INTERVAL / 60000}min`);
+  console.log(`Auto-backup enabled: GitHub repo ${GITHUB_REPO}, every ${BACKUP_INTERVAL / 60000}min (${BACKUP_DEBOUNCE / 1000}s after changes)`);
 } else {
   console.log('Auto-backup disabled: set GITHUB_TOKEN env var to enable');
 }
@@ -746,8 +749,9 @@ if (GITHUB_TOKEN) {
 // Render sends SIGTERM before killing the process — use this window to save data
 async function emergencyBackup(signal) {
   console.log(`Received ${signal} — running emergency backup...`);
-  if (GITHUB_TOKEN && dataChanged) {
+  if (GITHUB_TOKEN) {
     try {
+      dataChanged = true; // always force backup on shutdown
       await pushBackupToGitHub();
       console.log('Emergency backup to GitHub complete.');
     } catch (err) {
