@@ -16,5 +16,5 @@ RUN npm run build
 # Expose port
 EXPOSE 3001
 
-# Start server
-CMD ["node", "server/index.js"]
+# Start server with explicit memory limit for 256MB VM
+CMD ["node", "--max-old-space-size=200", "server/index.js"]

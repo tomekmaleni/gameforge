@@ -21,6 +21,6 @@ primary_region = "fra"  # Frankfurt - closest to Croatia
   destination = "/data"
 
 [[vm]]
-  memory = "512mb"
+  memory = "256mb"
   cpu_kind = "shared"
   cpus = 1

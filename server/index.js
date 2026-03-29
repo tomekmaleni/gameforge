@@ -128,14 +128,19 @@ function generateBackupJSON() {
   }
   const users = db.prepare('SELECT * FROM users').all();
   data._users = users;
+  // Process files one at a time to avoid loading all BLOBs into memory
   try {
-    const files = db.prepare('SELECT filename, mimetype, data, created_date FROM files').all();
-    data._files = files.map(f => ({
-      filename: f.filename,
-      mimetype: f.mimetype,
-      data: Buffer.from(f.data).toString('base64'),
-      created_date: f.created_date,
-    }));
+    const fileMeta = db.prepare('SELECT filename, mimetype, created_date FROM files').all();
+    const getFileData = db.prepare('SELECT data FROM files WHERE filename = ?');
+    data._files = fileMeta.map(f => {
+      const row = getFileData.get(f.filename);
+      return {
+        filename: f.filename,
+        mimetype: f.mimetype,
+        data: row ? Buffer.from(row.data).toString('base64') : '',
+        created_date: f.created_date,
+      };
+    });
   } catch { data._files = []; }
   return JSON.stringify(data, null, 2);
 }
@@ -687,15 +692,15 @@ if (fs.existsSync(DIST_DIR)) {
       console.log('Database is empty, restoring from backup.json...');
       try {
         const data = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+        // Restore entities and users in a transaction
         const insert = db.prepare('INSERT OR REPLACE INTO entities (id, entity_type, data, created_date, updated_date) VALUES (?, ?, ?, ?, ?)');
         const tx = db.transaction(() => {
           for (const [entityType, entities] of Object.entries(data)) {
-            if (entityType.startsWith('_')) continue; // skip _users, _files
+            if (entityType.startsWith('_')) continue;
             if (!Array.isArray(entities)) continue;
             for (const entity of entities) {
               const now = new Date().toISOString();
               const entityId = entity.id || uuidv4();
-              // Strip metadata from data column (stored as separate DB columns)
               const cleanData = { ...entity };
               delete cleanData.id;
               delete cleanData.created_date;
@@ -707,18 +712,21 @@ if (fs.existsSync(DIST_DIR)) {
             const upsert = db.prepare('INSERT OR REPLACE INTO users (email, full_name, created_date) VALUES (?, ?, ?)');
             for (const u of data._users) upsert.run(u.email, u.full_name, u.created_date);
           }
-          // Restore uploaded files
-          if (data._files && Array.isArray(data._files)) {
-            const insertFile = db.prepare('INSERT OR REPLACE INTO files (filename, mimetype, data, created_date) VALUES (?, ?, ?, ?)');
-            for (const f of data._files) {
-              const buf = Buffer.from(f.data, 'base64');
-              insertFile.run(f.filename, f.mimetype, buf, f.created_date);
-              try { fs.writeFileSync(path.join(UPLOADS_DIR, f.filename), buf); } catch { /* ignore */ }
-            }
-            console.log(`Restored ${data._files.length} uploaded files.`);
-          }
         });
         tx();
+        // Restore files one at a time outside the transaction to keep memory low
+        if (data._files && Array.isArray(data._files)) {
+          const insertFile = db.prepare('INSERT OR REPLACE INTO files (filename, mimetype, data, created_date) VALUES (?, ?, ?, ?)');
+          for (let i = 0; i < data._files.length; i++) {
+            const f = data._files[i];
+            const buf = Buffer.from(f.data, 'base64');
+            insertFile.run(f.filename, f.mimetype, buf, f.created_date);
+            try { fs.writeFileSync(path.join(UPLOADS_DIR, f.filename), buf); } catch { /* ignore */ }
+            data._files[i] = null; // free memory immediately
+          }
+          console.log(`Restored ${data._files.length} uploaded files.`);
+        }
+        data._files = null; // free all file data
         console.log('Restore from backup.json complete!');
       } catch (err) {
         console.error('Restore failed:', err.message);
