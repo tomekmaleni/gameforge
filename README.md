@@ -65,7 +65,7 @@ This builds the frontend and serves everything from the Express server on port 3
 
 All data is stored in SQLite on a persistent Fly.io volume — it survives all deploys and restarts. Additional safety layers:
 
-1. **Auto-backup to GitHub** — the server pushes `backup.json` to the repo every 5 minutes (or 30s after any change) via the GitHub API
+1. **Auto-backup to GitHub** — the server pushes entity data to the repo every 10 minutes (or 1 min after any change) via the GitHub API
 2. **Shutdown backup** — on server shutdown (SIGTERM), an emergency backup is pushed to GitHub
 3. **Manual Save button** — click "Save Backup" in the sidebar to trigger an immediate backup
 4. **Auto-restore** — on startup, if the database is empty, the server restores from `backup.json`
