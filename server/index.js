@@ -109,13 +109,13 @@ app.use('/uploads', (req, res, next) => {
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'tomekmaleni/gameforge';
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'master';
-const BACKUP_INTERVAL = 5 * 60 * 1000;  // 5 minutes
-const BACKUP_DEBOUNCE = 30 * 1000;      // 30 seconds after last change
+const BACKUP_INTERVAL = 10 * 60 * 1000; // 10 minutes
+const BACKUP_DEBOUNCE = 60 * 1000;      // 1 minute after last change
 
 let dataChanged = false;
 let debounceTimer = null;
 
-function generateBackupJSON() {
+function generateBackupJSON({ includeFiles = false } = {}) {
   const rows = db.prepare('SELECT * FROM entities').all();
   const data = {};
   for (const row of rows) {
@@ -128,20 +128,23 @@ function generateBackupJSON() {
   }
   const users = db.prepare('SELECT * FROM users').all();
   data._users = users;
-  // Process files one at a time to avoid loading all BLOBs into memory
-  try {
-    const fileMeta = db.prepare('SELECT filename, mimetype, created_date FROM files').all();
-    const getFileData = db.prepare('SELECT data FROM files WHERE filename = ?');
-    data._files = fileMeta.map(f => {
-      const row = getFileData.get(f.filename);
-      return {
-        filename: f.filename,
-        mimetype: f.mimetype,
-        data: row ? Buffer.from(row.data).toString('base64') : '',
-        created_date: f.created_date,
-      };
-    });
-  } catch { data._files = []; }
+  // Only include files when explicitly requested (e.g. full export)
+  // On Fly.io with persistent volume, files are safe on disk — no need to backup to GitHub
+  if (includeFiles) {
+    try {
+      const fileMeta = db.prepare('SELECT filename, mimetype, created_date FROM files').all();
+      const getFileData = db.prepare('SELECT data FROM files WHERE filename = ?');
+      data._files = fileMeta.map(f => {
+        const row = getFileData.get(f.filename);
+        return {
+          filename: f.filename,
+          mimetype: f.mimetype,
+          data: row ? Buffer.from(row.data).toString('base64') : '',
+          created_date: f.created_date,
+        };
+      });
+    } catch { data._files = []; }
+  }
   return JSON.stringify(data, null, 2);
 }
 
@@ -599,7 +602,7 @@ app.post('/api/seed', async (req, res) => {
 // ---------- export full database as JSON ----------
 app.get('/api/export', (req, res) => {
   try {
-    const content = generateBackupJSON();
+    const content = generateBackupJSON({ includeFiles: true });
     res.setHeader('Content-Disposition', 'attachment; filename="gameforge-backup.json"');
     res.setHeader('Content-Type', 'application/json');
     res.send(content);
