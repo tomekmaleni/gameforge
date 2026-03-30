@@ -538,7 +538,10 @@
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
       "name": "Al-Zarova Lubanja",
-      "data": {},
+      "data": {
+        "Lore": "Učenjak Al-Zar je posvetio svoj život proučavanju okultnog i onozemaljskog što ga je navelo da postane dio Malakrovog kulta. Okolnosti u kojima je umro nisu u potpunosti jasne, ali s obzirom da se njegova lubanja ubrzo počela koristiti u okultnim ritualima nije previše teško zamisliti kako je završio. ",
+        "Ability": "-Tijekom borbe s duhom možeš mu nanijeti 1 štetu ukoliko ozljediš jednu svoju figuru, ozljeđena figura mora prva primiti štetu, moguće ponoviti više puta, s time da je svaki put potrebno ozljediti trupe za jednu štetu više nego zadnji put "
+      },
       "mechanic_ids": [
         "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
         "49b40778-30f3-4367-b379-2f3f083a6fd0"
@@ -550,7 +553,7 @@
       "image_url": "/uploads/005ed0e6-1458-41b2-9b9c-1c3475216be9.png",
       "id": "6c9e0240-0c1b-4b3a-a498-e4a72d40a526",
       "created_date": "2026-03-26T21:31:58.585Z",
-      "updated_date": "2026-03-30T09:55:37.045Z"
+      "updated_date": "2026-03-30T17:36:25.311Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -573,7 +576,10 @@
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
       "name": "Lažni General",
-      "data": {},
+      "data": {
+        "Lore": "Bijeg iz borbe lagano postaje „strateški“ manevar uz ovu zgodnu napravu.",
+        "Ability": "-može ga se igrati umjesto zapovjednika tijekom borbe, ima snagu 0 i ne pridodaje nikakav efekt, nakon borbe se vraća u ruku "
+      },
       "mechanic_ids": [
         "e141cdc3-3642-4cda-b6c9-dd6fae903c9f"
       ],
@@ -584,7 +590,7 @@
       "sort_order": 32,
       "id": "d23a64d1-b882-45dc-aab4-bccc85cba02a",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-26T21:31:58.586Z"
+      "updated_date": "2026-03-30T17:37:03.855Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -847,8 +853,10 @@
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
-      "name": "Baldwinova maska",
-      "data": {},
+      "name": "Baltharova Maska",
+      "data": {
+        "Ability": "-jednom po rundi moguće je zaustaviti jednu akciju drugog igrača bilo kojeg tipa \n- na samom kraju rundu ukoliko je artefakt u tvojem posjedu koraš raniti jednog svog vojnika, ukoliko su jednio preostali ranjeni vojnici moraš jednog ubiti, ukoliko nemaš vojnika na polju artefakt se vraća u svoju hrpu \n"
+      },
       "mechanic_ids": [
         "d00c81f3-04fc-4a28-9244-a684e514b08d"
       ],
@@ -859,7 +867,7 @@
       "image_url": "/uploads/8c5071aa-6ad5-492c-8c11-3dcb6587de43.jpeg",
       "id": "6c8c519b-e5d5-4069-9454-0b289cfa2f81",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-26T21:34:07.513Z"
+      "updated_date": "2026-03-30T17:37:35.733Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
