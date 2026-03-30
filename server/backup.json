@@ -680,7 +680,9 @@
       "name": "Ratni Planovi",
       "data": {
         "Type": "Početni - Legija",
-        "type_color": "yellow"
+        "type_color": "yellow",
+        "Lore": "„Dobiti bitku je jedna stvar, ali uspješno dovesti vojsku do nje je druga“ ",
+        "Ability": "-Ukoliko se skupina pomiće 2 polja može ostaviti jednu figuru na prvom polju i nastaviti do drugog  "
       },
       "mechanic_ids": [
         "03a90e65-f871-46d0-886f-191f8e8d2dcd"
@@ -693,7 +695,7 @@
       "image_url": "/uploads/bbe85653-ae1a-4e59-bd6e-ddbbf3439fe1.png",
       "id": "85ccece0-8551-4d66-93d7-dce2743d9ed2",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:54:34.789Z"
+      "updated_date": "2026-03-30T17:30:07.342Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -701,7 +703,9 @@
       "name": "Legijin Pečat",
       "data": {
         "Type": "Početni - Legija",
-        "type_color": "yellow"
+        "type_color": "yellow",
+        "Ability": "-tijekom početne faze Legija može regrutirati do 3 vojnika u Citadeli po cjeni od 2 novčića po vojniku bez obzira da li je izvučena karica s regrutacijskom fazom ",
+        "Lore": "„Kada se pojavi naš simbol uvijek ima volontera, još kada bi se svojevoljno prijavili“ "
       },
       "mechanic_ids": [
         "5cb84b33-a1d9-48a4-9725-ea9f56e8908a"
@@ -714,7 +718,7 @@
       "image_url": "/uploads/c6c2c262-7ddd-4cde-a935-fe0fc8146ecc.png",
       "id": "93b09501-1dc3-4c18-ad65-83733f44719c",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:54:24.997Z"
+      "updated_date": "2026-03-30T17:29:43.796Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -1116,7 +1120,10 @@
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
       "name": "Legija",
-      "data": {},
+      "data": {
+        "Lore": "„Kada je svijet propao mnogi su se predali bezvlađu i anarhiji, dok su oni slabiji bili prisiljeni prihvatiti to novo stanje svijeta u kojemu je zakon i vlast zamijenjena vladavinom jačeg. No nisu svi bili spremni mirno prihvatiti takvo stanje. Vitezi, sudci, vojnici i plemići starog svijeta udružili su se zajedno ne bi li potisnuli anarhiju i bezvlađe te ponovno uveli stabilnost i red u društvo. Njihov uspjeh u bivšem središtu svijeta bio je samo početak jer je pravi zadatak tek stajao pred njima. Mogu li prijeći preko ruševina i pustoši starog svijeta kako bi ponovno ujedinili sva naselja pod jednu zastavu ili će se njihov marš slomiti nad ruševinama poput marša tolikih drugih  prije njih?“ ",
+        "Ability": "Setup- 4 legionara u Citadeli\nRegrutiranje- Tijekom faze regrutiranja prvi vojnik je uvijek besplatan\nGosopdari Citadele- Legija može zatvoriti jedna vrata Citadele svake runde, ostaju zatvorena do kraja te runde"
+      },
       "mechanic_ids": [],
       "tags": [
         "frakcije"
@@ -1125,7 +1132,7 @@
       "image_url": "/uploads/3f665922-6039-4372-85ba-fd4886dc14c1.png",
       "id": "b1943bbb-8a52-414f-9496-3e75b7f8016a",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-26T21:33:00.330Z"
+      "updated_date": "2026-03-30T17:28:58.087Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
