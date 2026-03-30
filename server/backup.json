@@ -1228,6 +1228,36 @@
       "id": "ffb56fd7-77a4-4562-a478-e414ddbb2c5b",
       "created_date": "2026-03-30T10:00:35.067Z",
       "updated_date": "2026-03-30T10:00:35.067Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "03185944-206b-47d8-895f-a90bf09814ca",
+      "name": "Skretanje 3",
+      "data": {},
+      "tags": [
+        "skretanje",
+        "polje"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/f74b7a38-da3f-4069-b5c6-6f0fc6851c9c.png",
+      "id": "d00da1e9-152b-46de-810a-ae303a528b66",
+      "created_date": "2026-03-30T16:16:24.542Z",
+      "updated_date": "2026-03-30T16:16:24.542Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "03185944-206b-47d8-895f-a90bf09814ca",
+      "name": "Skretanje 4",
+      "data": {},
+      "tags": [
+        "polje",
+        "skretanje"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/74dd4a9d-4b74-470f-9b1f-ec80bc0a2f64.png",
+      "id": "067c4851-d145-4958-86ca-edd3990c5b5b",
+      "created_date": "2026-03-30T16:16:46.950Z",
+      "updated_date": "2026-03-30T16:16:46.950Z"
     }
   ],
   "Idea": [
