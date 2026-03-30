@@ -422,6 +422,22 @@
       "id": "2ae0f84c-144e-48d1-9ccf-6a6fc1c8dad2",
       "created_date": "2026-03-26T21:43:12.947Z",
       "updated_date": "2026-03-26T21:43:12.947Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Revive",
+      "description": "",
+      "id": "8bbe8c73-6911-4cae-a14e-e6d43aed64b8",
+      "created_date": "2026-03-30T09:59:23.035Z",
+      "updated_date": "2026-03-30T09:59:23.035Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "name": "Push",
+      "description": "",
+      "id": "312bddf3-df63-4292-bcc9-6a2714e0002b",
+      "created_date": "2026-03-30T10:00:07.674Z",
+      "updated_date": "2026-03-30T10:00:07.674Z"
     }
   ],
   "GameEntry": [
@@ -1172,11 +1188,46 @@
       "tags": [
         "artefakti"
       ],
-      "mechanic_ids": [],
+      "mechanic_ids": [
+        "8bbe8c73-6911-4cae-a14e-e6d43aed64b8"
+      ],
       "image_url": "/uploads/52a7b73f-f762-4076-8231-e393acd39215.png",
       "id": "5f6767fd-6e1e-44ec-b801-efaa3b375bac",
       "created_date": "2026-03-30T09:59:14.091Z",
-      "updated_date": "2026-03-30T09:59:14.091Z"
+      "updated_date": "2026-03-30T09:59:29.827Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Borbeni Probijač",
+      "data": {},
+      "tags": [
+        "artefakti"
+      ],
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
+        "312bddf3-df63-4292-bcc9-6a2714e0002b"
+      ],
+      "image_url": "/uploads/4a019e80-bfe8-461c-af6d-2a21daee5c8e.png",
+      "id": "eb8b91fb-0847-4fa6-8de9-773e095d4a84",
+      "created_date": "2026-03-30T10:00:00.475Z",
+      "updated_date": "2026-03-30T10:00:14.323Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Kruna Utišane Vlasti",
+      "data": {},
+      "tags": [
+        "artefakti"
+      ],
+      "mechanic_ids": [
+        "e141cdc3-3642-4cda-b6c9-dd6fae903c9f"
+      ],
+      "image_url": "/uploads/fd14e039-390c-48f8-9f91-2c5717042c8d.png",
+      "id": "ffb56fd7-77a4-4562-a478-e414ddbb2c5b",
+      "created_date": "2026-03-30T10:00:35.067Z",
+      "updated_date": "2026-03-30T10:00:35.067Z"
     }
   ],
   "Idea": [
