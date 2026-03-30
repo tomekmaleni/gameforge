@@ -1163,6 +1163,20 @@
       "id": "4ce76868-a020-4aaa-823e-c9c39a254f3a",
       "created_date": "2026-03-30T09:52:30.487Z",
       "updated_date": "2026-03-30T09:52:30.487Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
+      "name": "Algronove Lubanje",
+      "data": {},
+      "tags": [
+        "artefakti"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/52a7b73f-f762-4076-8231-e393acd39215.png",
+      "id": "5f6767fd-6e1e-44ec-b801-efaa3b375bac",
+      "created_date": "2026-03-30T09:59:14.091Z",
+      "updated_date": "2026-03-30T09:59:14.091Z"
     }
   ],
   "Idea": [
