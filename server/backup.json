@@ -926,7 +926,9 @@
       "name": "Egelijino Oko",
       "data": {
         "Type": "Relikvija",
-        "type_color": "blue"
+        "type_color": "blue",
+        "Lore": "Proročica Egelija bila je poznata po svojem nadnaravnom vidu koji je mogao doseći gotovo bilo koje mjesto na svijetu, svaki dan stotine ljudi su dolazili pred nju u nadi da će svojim vidom naići na nešto ili nekog izgubljenog. Na samom kraju taj je dar osudio Egeliju na smrt. Jedan joj je plemić ne povjerovavši da ne može pronaći njegovu ženu iskopao oči, ali od tog dana više nije bio viđen. ",
+        "Ability": "-Tijekom [x] faze možeš pogledati najgornju karticu iz bilo kojeg deka "
       },
       "mechanic_ids": [
         "9b8c78db-8374-40b1-b989-3fa3e398b929"
@@ -939,7 +941,7 @@
       "image_url": "/uploads/d4ac8a97-0ad3-4bf5-b9e7-ea435caa7ee6.png",
       "id": "3b037be5-e451-44de-a663-c46ec702540f",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:56:23.045Z"
+      "updated_date": "2026-03-30T17:34:33.608Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -947,7 +949,9 @@
       "name": "Dunirov Prst",
       "data": {
         "Type": "Relikvija",
-        "type_color": "blue"
+        "type_color": "blue",
+        "Lore": "Postoje legende o slavnom mističaru Duniru koji je prstima mogao upravljati pokretima živih bića, nevjerni car dao ga je baciti s litice, ali je u procesu i sam pao u svoju smrt. Neki tvrde da je to bio samo nesretni slučaj, ali drugi vjeuju da ga je sam Dunir naveo na pad potezom svog prsta.",
+        "Ability": "-Tijekom faze micanja možeš pomaknuti jednu figuricu drugog igrača "
       },
       "mechanic_ids": [
         "25cc3098-0fdb-47fd-a651-68cccb2e0fd1",
@@ -961,7 +965,7 @@
       "image_url": "/uploads/78d448d5-1ac4-4f33-9c3b-6f279a8d9060.png",
       "id": "90a727af-7534-4539-b27e-7e6fa88f412e",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:56:16.117Z"
+      "updated_date": "2026-03-30T17:33:50.544Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -969,7 +973,9 @@
       "name": "Averinovo Srce",
       "data": {
         "Type": "Relikvija",
-        "type_color": "blue"
+        "type_color": "blue",
+        "Lore": "Averin je svoj život posvetio izučavanju ranarstva i iscjeljiteljstva, ali kada je rat pokucao na njegova vrata, odazvao se njegovu pozivu. Na bojnom polju i iza gradskih zidina tijekom opsade danoćno je previjao rane svih potrebitih bez obzira na njihov status. Tog kobnog dana pokušavao je spasiti mladog viteza od sigurne smrti kada mu je strelica probola srce. Krv koja je potekla odmah je zatvorila ranu mladića koji je potom pokopao Averina pritom sačuvavši njegovo srce. ",
+        "Ability": "-Tijekom [x] faze možeš ozdraviti 1 grupu "
       },
       "mechanic_ids": [
         "4086e696-c0ee-4565-8a17-6e69068d20f4"
@@ -982,7 +988,7 @@
       "image_url": "/uploads/d97312f3-c121-4986-ad38-3d4e081707a3.png",
       "id": "eb81fec0-39f6-495c-9ac8-18f692deb28e",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:56:09.342Z"
+      "updated_date": "2026-03-30T17:34:59.872Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -1076,7 +1082,10 @@
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "b9827f53-e4b3-448e-be45-c9a40c45c93b",
       "name": "Gilda",
-      "data": {},
+      "data": {
+        "Lore": "„Nakon raspada Carstva trgovina nije nestala već se adaptirala. Nekoć moćne karavane zamijenjene su malim naoružanim skupinama dovoljno ludim da se usude odmaknuti od sigurnosti zidina, dok su gradske trgove pune štandova i radnji zamijenile malene zagusite prostorije i skriveni podrumi. No s vremenom je došlo do sistematizacije takvog oblika nove trgovine. Nekoć malene samostalne skupine sada su se pretvorile u plaćeničke čete obogaćene uputstvima i radnicima, podrumi i malene prostorije koje su nekoć vrvjele trgovcima sada su zjapile prazne zamijenjene velikom halom ispod trgovačkog sindikata u Citadeli. Iza svega toga stajala je jedna jedina organizacija kojoj su nadjenuili ime Gilda. Nije bilo tog predmeta koji je mogao biti prodan u Citadeli bez da Gilda za to sazna ili ne ubere dio prihoda.“ ",
+        "Ability": "Setup- 2 agenta u Citadeli, Mistična kutija i jedan nasumični artefakt s Crnog Tržišta\nPorez na Artefakte- Dobija dio profita od artefakata prodanih na crnom tržištu \nKroz sijenu- Grupe s 1 vojnikom ne moraju ući u borbu kada se nađu na polju s čudovištem ili vojnicima drugog igrača "
+      },
       "mechanic_ids": [],
       "tags": [
         "frakcije"
@@ -1085,7 +1094,7 @@
       "image_url": "/uploads/e63a5d87-c2ec-4511-834a-8e2cb2ef81e6.png",
       "id": "e09225a9-6d71-427f-a39e-3473c9c0f78f",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-26T21:33:18.095Z"
+      "updated_date": "2026-03-30T17:32:40.688Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -1137,8 +1146,10 @@
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "dd22a3ca-2ed0-42be-9ecc-57b49543ea35",
-      "name": "Karhedonski zlatnici",
-      "data": {},
+      "name": "Karhedonski zlatnici (3)",
+      "data": {
+        "Lore": "Veliki zlatnici s prepoznatljivom rupom u sredini, nekada davno su se koristili kao glavna valuta na karhedonskim tržnicama. Čak i nakon propasti Karhedona i ostatka svijeta karhedonski zlatnici ubiru dobru cijenu na tržištu. "
+      },
       "mechanic_ids": [],
       "tags": [
         "blago"
@@ -1147,7 +1158,7 @@
       "sort_order": 24,
       "id": "ef4cce15-3c81-4b6c-af6a-9cea9bcbf7fb",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-26T21:31:58.586Z"
+      "updated_date": "2026-03-30T17:33:22.107Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
