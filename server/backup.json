@@ -589,10 +589,12 @@
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
-      "name": "Durbin",
+      "name": "Noćni Durbin",
       "data": {
         "Type": "Početni - Posljednja ekspedicija",
-        "type_color": "green"
+        "type_color": "green",
+        "Ability": "-jednom po rundi u početnoj ili fazi pomicanja  dozvoljeno je otkriti jedno nesitraženo polje, polje mora biti udaljeno na jedan ili dva razmaka od grupe \n -ukoliko je neprijateljski žeton ili zamka na polju „Durbin“ se može iskoristiti za otkrivanje najgornje kartice sa deka čudovišta ili vrste zamke koja se nalazi na tom polju, igrač nije dužan podijeliti svoje saznanje s drugim igračima, jednak domet i cijena kao i za otkrivanje neistraženog polja \n",
+        "Lore": "„Posebno izrađeni durbin s dalgaškim staklom umjesto normalnog, kažu da se kroz njega može vidjeti jasno kao dan čak  usred podzemnih špilja“ "
       },
       "mechanic_ids": [
         "8fc84fea-c157-4917-94d6-4c71e15fd5ff"
@@ -605,7 +607,7 @@
       "sort_order": 33,
       "id": "0a6820d9-1c72-4434-aa60-62b1ce9666dd",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-26T21:38:05.820Z"
+      "updated_date": "2026-03-30T17:25:56.849Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -613,7 +615,9 @@
       "name": "Oprema za penjanje",
       "data": {
         "Type": "Početni - Posljednja ekspedicija",
-        "type_color": "green"
+        "type_color": "green",
+        "Ability": "-dopušta prelaženje zidova, ali grupa koja prelazi troši dodatnu akciju ",
+        "Lore": "„Direktan prijelaz je bolji nego duga zaobilaznica“ "
       },
       "mechanic_ids": [
         "03a90e65-f871-46d0-886f-191f8e8d2dcd"
@@ -626,7 +630,7 @@
       "sort_order": 34,
       "id": "f908d21e-a936-4ef7-bf44-2b367d46cf5c",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:54:46.397Z"
+      "updated_date": "2026-03-30T17:26:26.093Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
