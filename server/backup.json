@@ -853,7 +853,9 @@
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
       "name": "Triglav nordarski",
-      "data": {},
+      "data": {
+        "Ability": "?"
+      },
       "mechanic_ids": [],
       "tags": [
         "artefakti"
@@ -862,7 +864,7 @@
       "image_url": "/uploads/e6718a96-b9e5-46e1-9f32-bfd64033135c.png",
       "id": "4357a0a2-ca29-4d49-84f9-5ba8d6be8ccd",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:53:50.645Z"
+      "updated_date": "2026-03-30T16:18:59.899Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -992,23 +994,6 @@
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
-      "category_id": "6628cf0e-a6ac-4324-ace3-bae08d482ef0",
-      "name": "Inkvizitor",
-      "data": {},
-      "mechanic_ids": [],
-      "tags": [
-        "čudovište",
-        "hereza crne vrane",
-        "elitna"
-      ],
-      "sort_order": 14,
-      "image_url": "/uploads/cda208f1-b439-45fd-bc11-e35720c4e5db.png",
-      "id": "f40b4101-040b-4f0a-b3cb-a279f94f2be8",
-      "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:56:56.011Z"
-    },
-    {
-      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "03185944-206b-47d8-895f-a90bf09814ca",
       "name": "Skretanje2",
       "data": {},
@@ -1038,21 +1023,6 @@
       "id": "ebc97b69-31ad-48eb-bcb0-da6c8ec49fd4",
       "created_date": "2026-03-26T21:31:58.586Z",
       "updated_date": "2026-03-30T09:57:25.061Z"
-    },
-    {
-      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
-      "category_id": "3033c6e7-0be0-488f-a27a-1712698d3279",
-      "name": "Valmarske Kosti",
-      "data": {},
-      "mechanic_ids": [],
-      "tags": [
-        "trofej"
-      ],
-      "sort_order": 17,
-      "image_url": "/uploads/7b6f3194-1624-4b58-97b8-874e3d3ab337.png",
-      "id": "50064de5-2aaa-4fe2-b354-61d5fdef8cae",
-      "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:57:14.283Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -1258,6 +1228,64 @@
       "id": "067c4851-d145-4958-86ca-edd3990c5b5b",
       "created_date": "2026-03-30T16:16:46.950Z",
       "updated_date": "2026-03-30T16:16:46.950Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "b4a5e588-31e1-4893-991a-9fd3e7cf217b",
+      "name": "Inkvizitor",
+      "data": {},
+      "tags": [
+        "čudovište",
+        "hereza crne vrane",
+        "elitna"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/9340ce29-b938-4965-97ff-f9f76b530f2b.png",
+      "id": "81298164-bc15-4b97-b70c-5149b171e7a0",
+      "created_date": "2026-03-30T16:18:36.697Z",
+      "updated_date": "2026-03-30T16:18:36.697Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "dd22a3ca-2ed0-42be-9ecc-57b49543ea35",
+      "name": "Valmarske Kosti",
+      "data": {},
+      "tags": [
+        "blago"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/f12d135c-8928-4b51-8310-ec98aad306d5.png",
+      "id": "ef8a0225-a864-4fcc-9d82-069cbd77e37e",
+      "created_date": "2026-03-30T16:19:31.834Z",
+      "updated_date": "2026-03-30T16:19:31.834Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "dd22a3ca-2ed0-42be-9ecc-57b49543ea35",
+      "name": "Tuladski Smaragd",
+      "data": {},
+      "tags": [
+        "blago"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/cb8004b1-b68b-4e56-b237-1bc1d340baab.png",
+      "id": "da165b6b-d0c9-4776-825b-581d15e9d8d6",
+      "created_date": "2026-03-30T16:19:54.740Z",
+      "updated_date": "2026-03-30T16:19:54.740Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "category_id": "dd22a3ca-2ed0-42be-9ecc-57b49543ea35",
+      "name": "Zlatna Groznica",
+      "data": {},
+      "tags": [
+        "blago"
+      ],
+      "mechanic_ids": [],
+      "image_url": "/uploads/e28a51b0-fb64-490a-9b37-e3a0e817038a.png",
+      "id": "bb72efac-9389-49a3-a743-68e3d3fcc50f",
+      "created_date": "2026-03-30T16:20:12.692Z",
+      "updated_date": "2026-03-30T16:20:12.692Z"
     }
   ],
   "Idea": [
@@ -1642,6 +1670,64 @@
       "id": "3600f693-daa3-4fcc-8ac6-177cc15a5c9e",
       "created_date": "2026-03-30T14:18:01.562Z",
       "updated_date": "2026-03-30T14:18:01.562Z"
+    }
+  ],
+  "TrashItem": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "item_type": "game_entry",
+      "item_id": "f40b4101-040b-4f0a-b3cb-a279f94f2be8",
+      "item_name": "Inkvizitor",
+      "item_data": {
+        "id": "f40b4101-040b-4f0a-b3cb-a279f94f2be8",
+        "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+        "category_id": "6628cf0e-a6ac-4324-ace3-bae08d482ef0",
+        "name": "Inkvizitor",
+        "data": {},
+        "mechanic_ids": [],
+        "tags": [
+          "čudovište",
+          "hereza crne vrane",
+          "elitna"
+        ],
+        "sort_order": 14,
+        "image_url": "/uploads/cda208f1-b439-45fd-bc11-e35720c4e5db.png",
+        "created_date": "2026-03-26T21:31:58.586Z",
+        "updated_date": "2026-03-30T09:56:56.011Z"
+      },
+      "deleted_by_email": "womir0706@gmail.com",
+      "deleted_by_name": "Jankezza",
+      "expires_at": "2026-04-29T16:17:53.514Z",
+      "id": "3bf536f6-c69e-4569-a63c-abaa2ce4b860",
+      "created_date": "2026-03-30T16:17:53.686Z",
+      "updated_date": "2026-03-30T16:17:53.686Z"
+    },
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "item_type": "game_entry",
+      "item_id": "50064de5-2aaa-4fe2-b354-61d5fdef8cae",
+      "item_name": "Valmarske Kosti",
+      "item_data": {
+        "id": "50064de5-2aaa-4fe2-b354-61d5fdef8cae",
+        "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+        "category_id": "3033c6e7-0be0-488f-a27a-1712698d3279",
+        "name": "Valmarske Kosti",
+        "data": {},
+        "mechanic_ids": [],
+        "tags": [
+          "trofej"
+        ],
+        "sort_order": 17,
+        "image_url": "/uploads/7b6f3194-1624-4b58-97b8-874e3d3ab337.png",
+        "created_date": "2026-03-26T21:31:58.586Z",
+        "updated_date": "2026-03-30T09:57:14.283Z"
+      },
+      "deleted_by_email": "womir0706@gmail.com",
+      "deleted_by_name": "Jankezza",
+      "expires_at": "2026-04-29T16:19:37.569Z",
+      "id": "55a48618-4a96-4e01-b90a-5c35ec62eb9c",
+      "created_date": "2026-03-30T16:19:37.740Z",
+      "updated_date": "2026-03-30T16:19:37.740Z"
     }
   ],
   "_users": [
