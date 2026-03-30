@@ -447,7 +447,9 @@
       "name": "Blagoslovljeni Štit Prvog Svitanja",
       "data": {
         "Type": "Početni - Odred minulog sunca",
-        "type_color": "blue"
+        "type_color": "blue",
+        "Lore": "Štit koji u sebi sadrži još uvijek sjajeći fragment samog Sunca. Prema predaji jedan od svećenika ga je uspio posvetiti i tako očuvati njegov sjaj, ali plativši za to svojom glavom. Njegove ime i tijelo nisu zapamćeni, ali njegovo djelo jest. ",
+        "Ability": "-dodaje 2 štita ukoliko se bori na ili pored svetišta"
       },
       "mechanic_ids": [
         "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
@@ -461,7 +463,7 @@
       "image_url": "/uploads/90322463-5180-436e-8631-1061a648a897.png",
       "id": "bcdfc95d-08a5-4f67-9940-1064b31a6442",
       "created_date": "2026-03-26T21:31:58.585Z",
-      "updated_date": "2026-03-30T09:54:01.005Z"
+      "updated_date": "2026-03-30T17:24:24.203Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -753,7 +755,9 @@
       "name": "Sveta voda",
       "data": {
         "Type": "Početni - Odred minulog sunca",
-        "type_color": "blue"
+        "type_color": "blue",
+        "Lore": "Posvećena voda čak i u najmanjim količinama reagira kada je donesena u blizinu svetačkih relikvija mijenjajući boju u jarko plavu i poprimajući svjetleća svojstva. ",
+        "Ability": "-ukoliko se relikvija ne pronađe na iskapalištu umjesto jednog sivog žetona izvadi dva iz vrećice "
       },
       "mechanic_ids": [
         "03c3ad95-91c2-4a8d-aaa4-c57a617fc808"
@@ -766,7 +770,7 @@
       "image_url": "/uploads/d8291bf3-b9a9-4384-b1fb-51403deb6016.png",
       "id": "b816b9f9-48a0-41a8-9295-3216fdb26d96",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:54:10.709Z"
+      "updated_date": "2026-03-30T17:24:53.625Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
@@ -975,8 +979,12 @@
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
       "category_id": "6628cf0e-a6ac-4324-ace3-bae08d482ef0",
-      "name": "Pontifex Maximus",
-      "data": {},
+      "name": "Pontifex Maximus (3)",
+      "data": {
+        "type_color": "blue",
+        "Ability": "-dodaje 1 štit za svaka 2 aktivna svetišta puta broj Paragorna u grupi ",
+        "Lore": "„Svijetu će biti dozvoljeno da se obnovi tek kada se nauči vjerovati, do tada preostaje borba“"
+      },
       "mechanic_ids": [
         "e141cdc3-3642-4cda-b6c9-dd6fae903c9f",
         "00d12df3-67a7-4a7f-a034-0896e534ea70"
@@ -990,7 +998,7 @@
       "image_url": "/uploads/3fb97efb-88a9-405a-b63a-c75d71bfbc61.png",
       "id": "ff393f6b-5aa8-47c2-8938-278176c2ed9c",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T09:56:44.963Z"
+      "updated_date": "2026-03-30T17:23:37.742Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
