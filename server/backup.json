@@ -1593,6 +1593,27 @@
       "updated_date": "2026-03-26T21:31:58.590Z"
     }
   ],
+  "DesignComparison": [
+    {
+      "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
+      "title": "Crtam Novoposvećenog- uglavnom unutar Odreda kada netko postaje Paragorn (u biti paladin/sveti vitez), treba ga se posvetiti, vjeruje se da novoposvećeni paragorn nosi poseban blagosov, ovaj zapovjednik predstavlja jednog takvog pojedinca, (low tier zapovjednik)",
+      "options": [
+        {
+          "label": "Bez Svijeća, čini mi se da mu fali nekaj, neki šmek koji ga povezuje s obredom posvećivanja",
+          "image_url": "/uploads/73f4d126-d808-489f-bcb4-501f0e9ac913.png",
+          "votes": []
+        },
+        {
+          "label": "Ili sa svijećama, možda je malo previše, nez ili da stavim manje svijeća, al većih i postavljenih više s redom simetrično",
+          "image_url": "/uploads/2f77bf83-d20b-47b7-a6f2-31cc4e8b0713.png",
+          "votes": []
+        }
+      ],
+      "id": "3600f693-daa3-4fcc-8ac6-177cc15a5c9e",
+      "created_date": "2026-03-30T14:18:01.562Z",
+      "updated_date": "2026-03-30T14:18:01.562Z"
+    }
+  ],
   "_users": [
     {
       "email": "tomekmaleni@gmail.com",
