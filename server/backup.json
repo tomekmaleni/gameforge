@@ -1710,12 +1710,14 @@
         {
           "label": "Ili sa svijećama, možda je malo previše, nez ili da stavim manje svijeća, al većih i postavljenih više s redom simetrično",
           "image_url": "/uploads/2f77bf83-d20b-47b7-a6f2-31cc4e8b0713.png",
-          "votes": []
+          "votes": [
+            "f.tomic1801@gmail.com"
+          ]
         }
       ],
       "id": "3600f693-daa3-4fcc-8ac6-177cc15a5c9e",
       "created_date": "2026-03-30T14:18:01.562Z",
-      "updated_date": "2026-03-30T17:42:18.249Z"
+      "updated_date": "2026-03-31T11:27:17.883Z"
     }
   ],
   "TrashItem": [
@@ -1804,7 +1806,7 @@
     },
     {
       "email": "f.tomic1801@gmail.com",
-      "full_name": "Filip Tomić",
+      "full_name": "Filip",
       "created_date": "2026-03-26T16:23:31.280Z"
     }
   ]
