@@ -855,7 +855,7 @@
       "category_id": "50ea6893-06b9-4cdf-a229-4c51b30948f4",
       "name": "Baltharova Maska",
       "data": {
-        "Ability": "-jednom po rundi moguće je zaustaviti jednu akciju drugog igrača bilo kojeg tipa \n- na samom kraju rundu ukoliko je artefakt u tvojem posjedu koraš raniti jednog svog vojnika, ukoliko su jednio preostali ranjeni vojnici moraš jednog ubiti, ukoliko nemaš vojnika na polju artefakt se vraća u svoju hrpu \n"
+        "Ability": "-jednom po rundi moguće je zaustaviti jednu akciju drugog igrača bilo kojeg tipa \n- na samom kraju runde ukoliko je artefakt u tvojem posjedu moraš raniti jednog svog vojnika, ukoliko su jednio preostali ranjeni vojnici moraš jednog ubiti, ukoliko nemaš vojnika na polju artefakt se vraća u svoju hrpu \n"
       },
       "mechanic_ids": [
         "d00c81f3-04fc-4a28-9244-a684e514b08d"
@@ -867,7 +867,7 @@
       "image_url": "/uploads/8c5071aa-6ad5-492c-8c11-3dcb6587de43.jpeg",
       "id": "6c8c519b-e5d5-4069-9454-0b289cfa2f81",
       "created_date": "2026-03-26T21:31:58.586Z",
-      "updated_date": "2026-03-30T17:37:35.733Z"
+      "updated_date": "2026-04-01T07:21:34.698Z"
     },
     {
       "project_id": "8fbc5bd3-a2d2-4465-bb86-cf4e67ccd0e1",
